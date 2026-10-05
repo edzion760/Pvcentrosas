@@ -58,6 +58,35 @@ pre.rc{background:var(--bg);padding:.8rem;border-radius:8px;white-space:pre-wrap
 .chips{display:flex;gap:.4rem;overflow-x:auto;padding:.5rem 0}.chips button{flex:none;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:.35rem .8rem;font:inherit;cursor:pointer}.chips button.on{background:var(--pri2);color:var(--pri);border-color:var(--pri)}
 .th{width:38px;height:38px;border-radius:7px;object-fit:cover;background:var(--pri2);vertical-align:middle;margin-right:.5rem}
 .cartbar{position:sticky;bottom:0;z-index:3}
+.cfab,.shhead{display:none}
+.cl{display:grid;grid-template-columns:52px 1fr auto;gap:.2rem .6rem;align-items:center;padding:.6rem 0;border-bottom:1px solid var(--line)}
+.cl .cth{width:52px;height:52px;border-radius:9px;overflow:hidden;background:var(--pri2);display:flex;align-items:center;justify-content:center;color:var(--pri);font-weight:700}
+.cl .cth img{width:100%;height:100%;object-fit:cover}
+.cl .cn{font-size:.92rem;line-height:1.2}
+.cl .cp{display:flex;align-items:center;gap:.3rem;color:var(--mut);font-size:.8rem;margin-top:.2rem}
+.cl .cp input{width:92px;text-align:right;padding:.25rem .4rem}
+.cl .cs{font-weight:700;text-align:right;white-space:nowrap}
+.cl .cq{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.qb{display:flex;align-items:center;gap:.4rem}
+.qb button{width:44px;height:44px;border-radius:10px;border:0;background:#0b7a4b;color:#fff;font-size:1.5rem;font-weight:700;cursor:pointer;line-height:1}
+.qb button.m{background:var(--pri2);color:var(--ink)}
+.qb button.t{background:#d92d20;font-size:1.1rem}
+.qb input{width:64px;text-align:center;font-size:1.1rem;font-weight:700;padding:.5rem .2rem}
+@media(max-width:800px){
+ #cartsheet{display:none}
+ body.cartopen #cartsheet{display:block;position:fixed;inset:0;z-index:15;background:var(--bg);overflow:auto;padding:0 .7rem 1rem;-webkit-overflow-scrolling:touch}
+ body.cartopen{overflow:hidden}
+ .shhead{display:flex;align-items:center;gap:.6rem;position:sticky;top:0;background:var(--bg);padding:.7rem 0;z-index:2}
+ .shhead b{font-size:1.25rem;flex:1}
+ .shhead .bk{width:44px;height:44px;border-radius:99px;border:0;background:var(--pri2);color:var(--ink);font-size:1.4rem;cursor:pointer}
+ .cfab{display:flex;position:fixed;left:.7rem;right:.7rem;bottom:.7rem;z-index:10;background:#0b7a4b;color:#fff;border:0;border-radius:14px;padding:.9rem 1.1rem;font:inherit;font-weight:700;font-size:1.05rem;align-items:center;gap:.7rem;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+ .cfab .n{background:#fff;color:#0b7a4b;min-width:28px;height:28px;border-radius:99px;display:flex;align-items:center;justify-content:center;font-size:.9rem;padding:0 6px}
+ .cfab .t{flex:1;text-align:left}
+ #cartsheet .cartbar{position:sticky;bottom:0}
+ .shhead+.card h3{display:none}
+ body:has(#cfab) #toast{bottom:84px!important}
+ main:has(.cfab){padding-bottom:5.5rem}
+}
 @media(max-width:640px){main{padding:.6rem}th,td{padding:.4rem .3rem}.hide-s{display:none}}
 </style>
 </head>
@@ -258,12 +287,17 @@ function drawGrid(){const g=$('#grid');if(!g)return;const q=(($('#q-sale')||{}).
 function setLine(kind,i,f,v){const l=S.carts[kind][i];l[f]=f==='qty'?Number(v)||0:cop(v);drawTot(kind);if(kind==='sale'&&f==='qty'){clearTimeout(window._gt);window._gt=setTimeout(drawGrid,400)}}
 function delLine(kind,i){S.carts[kind].splice(i,1);drawLines(kind);if(kind==='sale')drawGrid()}
 function drawLines(kind){const c=S.carts[kind];const pf=kind!=='trans'&&kind!=='recv';
+ if(kind==='sale'){const P=products();$('#lines-sale').innerHTML=c.length?c.map((l,i)=>{const p=P[l.sku]||{name:l.name};return`<div class="cl"><div class="cth">${l.sku[0]==='_'?'🧮':photo(p)}</div>
+ <div><div class="cn">${esc(l.name)}</div><div class="cp">Precio c/IVA <input inputmode="numeric" value="${fnum(l.price)}" onchange="setLine('sale',${i},'price',this.value);drawLines('sale')"></div></div>
+ <div class="cs" id="sub-sale-${i}">${fmt(l.qty*l.price)}</div>
+ <div class="cq"><div class="qb"><button class="${l.qty<=1?'t':'m'}" onclick="qtyLine(${i},-1)" aria-label="Quitar uno">${l.qty<=1?'🗑':'−'}</button><input type="number" step="0.01" min="0" inputmode="decimal" value="${l.qty}" oninput="setLine('sale',${i},'qty',this.value)"><button onclick="qtyLine(${i},1)" aria-label="Agregar uno">+</button></div>
+ <button class="b s d" onclick="delLine('sale',${i})">✕ Quitar</button></div></div>`}).join(''):'<p class="mut">Toca un producto para agregarlo.</p>';drawTot(kind);return}
  $('#lines-'+kind).innerHTML=c.length?`<div class="tw" style="max-height:none"><table><tr><th>Producto</th><th class="n">Cant.</th>${pf?`<th class="n">${kind==='buy'?'Costo c/IVA':'Precio c/IVA'}</th><th class="n">Subtotal</th>`:''}<th></th></tr>
  ${c.map((l,i)=>`<tr><td>${esc(l.name)}</td><td class="n"><input type="number" step="0.01" min="0" value="${l.qty}" style="width:76px" oninput="setLine('${kind}',${i},'qty',this.value)"></td>
  ${pf?`<td class="n"><input inputmode="numeric" value="${fnum(l.price)}" style="width:100px;text-align:right" onchange="setLine('${kind}',${i},'price',this.value);drawLines('${kind}')"></td><td class="n" id="sub-${kind}-${i}">${fmt(l.qty*l.price)}</td>`:''}
  <td><button class="b s d" onclick="delLine('${kind}',${i})">✕</button></td></tr>`).join('')}</table></div>`:'<p class="mut">Toca un producto para agregarlo.</p>';drawTot(kind)}
 function lineTotal(kind){return S.carts[kind].reduce((a,l)=>a+l.qty*l.price,0)}
-function drawTot(kind){S.carts[kind].forEach((l,i)=>{const e=$('#sub-'+kind+'-'+i);if(e)e.textContent=fmt(l.qty*l.price)});const e=$('#tot-'+kind);if(e)e.innerHTML=totHTML(kind)}
+function drawTot(kind){S.carts[kind].forEach((l,i)=>{const e=$('#sub-'+kind+'-'+i);if(e)e.textContent=fmt(l.qty*l.price)});const e=$('#tot-'+kind);if(e)e.innerHTML=totHTML(kind);if(kind==='sale')drawFab()}
 function totHTML(kind){const t=lineTotal(kind);if(kind==='trans'||kind==='recv')return`${S.carts[kind].length} producto(s)`;
  const d=kind==='sale'?cop(($('#f-disc')||{}).value):0;const tt=Math.max(0,t-d);
  let h=`<b style="font-size:1.3rem">${fmt(tt)}</b> <span class="mut">(base ${fmt(tt/IVA)} + IVA ${fmt(tt-tt/IVA)})</span>`;
@@ -271,16 +305,26 @@ function totHTML(kind){const t=lineTotal(kind);if(kind==='trans'||kind==='recv')
  return h}
 
 /* ============ VENDER ============ */
-function vSell(){S.carts.sale=S.carts.sale||[];S.lim=48;setTimeout(()=>{drawLines('sale');drawGrid()},0);
- return`<h2>Registrar venta</h2><div class="card"><div class="row">${U.role==='owner'?storeSel('f-store').replace('<select id="f-store">','<select id="f-store" onchange="drawGrid()">'):storeSel('f-store')}${dateInp('f-date')}
+function vSell(){S.carts.sale=S.carts.sale||[];S.lim=48;document.body.classList.remove('cartopen');setTimeout(()=>{drawLines('sale');drawGrid()},0);
+ return`<h2>Registrar venta</h2><div class="card"><div class="row">${U.role==='owner'?storeSel('f-store').replace('<select id="f-store">','<select id="f-store" onchange="drawGrid()">'):storeSel('f-store')}${dateInp('f-date')}</div></div>
+ <div class="card"><input id="q-sale" placeholder="Buscar producto por nombre o código…" style="width:100%" oninput="S.lim=48;drawGrid()"><div class="chips" id="chips"></div><div id="grid"></div></div>
+ <button class="cfab" id="cfab" onclick="cartOpen(true)"></button>
+ <div id="cartsheet"><div class="shhead"><button class="bk" onclick="cartOpen(false)" aria-label="Volver">‹</button><b>Carrito</b><button class="b" onclick="clearCart()">Limpiar</button></div>
+ <div class="card"><h3>Carrito</h3><div id="lines-sale"></div></div>
+ <div class="card"><div class="row">
  <label>Cliente<input id="f-cust" placeholder="Mostrador / nombre" style="min-width:200px"></label>
  <label>Forma de pago<select id="f-method">${METHODS.map(m=>`<option>${m}</option>`).join('')}</select></label>
  <label>Descuento $<input id="f-disc" inputmode="numeric" value="0" style="width:110px" oninput="drawTot('sale')"></label>
  <label>No. factura electrónica (Facturatech)<input id="f-fact" placeholder="opcional"></label></div>
  <label style="font-size:.9rem"><input type="checkbox" id="f-ret" onchange="drawTot('sale')"> El cliente practicó retención en la fuente (2,5%)</label></div>
- <div class="card"><input id="q-sale" placeholder="Buscar producto por nombre o código…" style="width:100%" oninput="S.lim=48;drawGrid()"><div class="chips" id="chips"></div><div id="grid"></div></div>
- <div class="card"><h3>Carrito</h3><div id="lines-sale"></div></div>
- <div class="card cartbar"><div class="row"><div id="tot-sale"></div><span class="sp" style="flex:1"></span><button class="b" onclick="S.carts.sale=[];drawLines('sale');drawGrid()">Limpiar</button><button class="b p" onclick="saveSale()">Guardar venta</button></div></div>`}
+ <div class="card cartbar"><div class="row"><div id="tot-sale"></div><span class="sp" style="flex:1"></span><button class="b" onclick="clearCart()">Limpiar</button><button class="b p" onclick="saveSale()">Guardar venta</button></div></div></div>`}
+function cartOpen(on){if(on){document.body.classList.add('cartopen');const s=$('#cartsheet');if(s)s.scrollTop=0;try{history.pushState({c:1},'')}catch(e){}}
+ else if(document.body.classList.contains('cartopen')){document.body.classList.remove('cartopen');if(history.state&&history.state.c){try{history.back()}catch(e){}}}}
+window.addEventListener('popstate',()=>document.body.classList.remove('cartopen'));
+function clearCart(){if(S.carts.sale.length&&!confirm('¿Vaciar el carrito?'))return;S.carts.sale=[];drawLines('sale');drawGrid();cartOpen(false)}
+function qtyLine(i,d){const l=S.carts.sale[i];if(!l)return;if(d<0&&l.qty<=1){delLine('sale',i);return}l.qty=Math.round((l.qty+d)*100)/100;drawLines('sale');drawGrid()}
+function drawFab(){const f=$('#cfab');if(!f)return;const c=S.carts.sale||[];const n=c.length;const d=cop((($('#f-disc'))||{}).value);const tt=Math.max(0,lineTotal('sale')-d);
+ f.innerHTML=n?`<span class="n">${n}</span><span class="t">Ver carrito</span><span>${fmt(tt)} ›</span>`:`<span class="t">Carrito vacío · toca un producto</span>`}
 function saveSale(){const c=S.carts.sale;if(!c.length)return toast('Agrega al menos un producto');
  const store=$('#f-store').value,date=$('#f-date').value;const K=stock();
  const short=c.filter(l=>l.sku[0]!=='_'&&((K[l.sku]||{})[store]||0)<l.qty);
