@@ -1,0 +1,1529 @@
+{
+ "negocio": "PVCENTRO",
+ "whatsapp": "+573107700583",
+ "catalogo": "https://edzion760.github.io/Pvcentrosas/catalogo.html",
+ "nota": "Precios en COP con IVA incluido. precio 0 = consultar. Link por producto: catalogo?p=<sku>",
+ "productos": [
+  {
+   "sku": "262409",
+   "nombre": "Angulo de Cuelga",
+   "categoria": "Estructura y accesorios",
+   "unidad": "Unidad",
+   "precio": 2700,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=262409",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/262409.webp"
+  },
+  {
+   "sku": "262089",
+   "nombre": "Omega con Reborde",
+   "categoria": "Cornisas y perfilería",
+   "unidad": "Unidad",
+   "precio": 3700,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=262089",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/262089.webp"
+  },
+  {
+   "sku": "262090",
+   "nombre": "Vigueta",
+   "categoria": "Estructura y accesorios",
+   "unidad": "Unidad",
+   "precio": 3700,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=262090",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/262090.webp"
+  },
+  {
+   "sku": "262092",
+   "nombre": "Tornillo Lamina pvc",
+   "categoria": "Estructura y accesorios",
+   "unidad": "Unidad",
+   "precio": 30,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=262092",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/262092.webp"
+  },
+  {
+   "sku": "262091",
+   "nombre": "Tornillo estructura",
+   "categoria": "Estructura y accesorios",
+   "unidad": "Unidad",
+   "precio": 30,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=262091",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/262091.webp"
+  },
+  {
+   "sku": "326829",
+   "nombre": "Lámina 30x8 EDD-81 Blanco",
+   "categoria": "Otros",
+   "unidad": "Lámina",
+   "precio": 32000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=326829",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/326829.webp"
+  },
+  {
+   "sku": "324827",
+   "nombre": "Lámina Gris Humo 30x8 mm EDD-82",
+   "categoria": "Otros",
+   "unidad": "Lámina",
+   "precio": 32000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=324827",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/324827.webp"
+  },
+  {
+   "sku": "416605",
+   "nombre": "Lámina Blanco Mármol 30x8 EDD88",
+   "categoria": "Otros",
+   "unidad": "Lámina",
+   "precio": 32000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=416605",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/416605.webp"
+  },
+  {
+   "sku": "416608",
+   "nombre": "Lámina Blanco madera 30x8 EDD-87",
+   "categoria": "Otros",
+   "unidad": "Lámina",
+   "precio": 32000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=416608",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/416608.webp"
+  },
+  {
+   "sku": "416621",
+   "nombre": "Lámina Blanco cedro 30x8 EDD-85",
+   "categoria": "Otros",
+   "unidad": "Lámina",
+   "precio": 32000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=416621",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/416621.webp"
+  },
+  {
+   "sku": "416616",
+   "nombre": "Lámina Blanco avena gris 30x8 EDD-86",
+   "categoria": "Otros",
+   "unidad": "Lámina",
+   "precio": 32000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=416616",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/416616.webp"
+  },
+  {
+   "sku": "326830",
+   "nombre": "Lámina 30x8 EDD-84 Avena",
+   "categoria": "Otros",
+   "unidad": "Lámina",
+   "precio": 32000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=326830",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/326830.webp"
+  },
+  {
+   "sku": "261832",
+   "nombre": "Lamina Gris Humo 86-16  30x9",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 35000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=261832",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/261832.webp"
+  },
+  {
+   "sku": "331433",
+   "nombre": "Cornisa T-01 Blanca",
+   "categoria": "Cornisas y perfilería",
+   "unidad": "Lámina",
+   "precio": 13000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=331433",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/331433.webp"
+  },
+  {
+   "sku": "617402",
+   "nombre": "Lámina mármol 3500 30x9mm Nacional",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 30000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=617402",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/617402.webp"
+  },
+  {
+   "sku": "331434",
+   "nombre": "Cornisa 3345 Gris humo",
+   "categoria": "Cornisas y perfilería",
+   "unidad": "Lámina",
+   "precio": 13000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=331434",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/331434.webp"
+  },
+  {
+   "sku": "617400",
+   "nombre": "Lámina 8392  30x9mm Nacional",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 30000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=617400",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/617400.webp"
+  },
+  {
+   "sku": "617399",
+   "nombre": "Lámina 3500-3 lineas plata 30x9mm Nacional",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 30000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=617399",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/617399.webp"
+  },
+  {
+   "sku": "617401",
+   "nombre": "Lámina 3513-3 cenizo 3lineas 30x9mm Nacional",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 30000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=617401",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/617401.webp"
+  },
+  {
+   "sku": "618091",
+   "nombre": "Lámina 3566-3 blanco Mármol linea plata 30x9mm Nacional",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 30000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=618091",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/618091.webp"
+  },
+  {
+   "sku": "3532432",
+   "nombre": "Ángulo drywall 2x2",
+   "categoria": "Estructura y accesorios",
+   "unidad": "Unidad",
+   "precio": 3000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=3532432",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/3532432.webp"
+  },
+  {
+   "sku": "1341401",
+   "nombre": "Ángulo en L wpc nacional 2,90m color gris",
+   "categoria": "Estructura y accesorios",
+   "unidad": "Unidad",
+   "precio": 18000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1341401",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1341401.webp"
+  },
+  {
+   "sku": "1066479",
+   "nombre": "Atornillador Inalámbrico 36v",
+   "categoria": "Herramientas",
+   "unidad": "Unidad",
+   "precio": 180000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1066479",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1066479.webp"
+  },
+  {
+   "sku": "583638",
+   "nombre": "Caballete para teja colonial",
+   "categoria": "Teja",
+   "unidad": "Unidad",
+   "precio": 50000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=583638",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/583638.webp"
+  },
+  {
+   "sku": "262088",
+   "nombre": "Cable Duplex",
+   "categoria": "Otros",
+   "unidad": "Metro lineal",
+   "precio": 1500,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=262088",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/262088.webp"
+  },
+  {
+   "sku": "249280",
+   "nombre": "Caja de Tiros",
+   "categoria": "Estructura y accesorios",
+   "unidad": "Unidad",
+   "precio": 35000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=249280",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/249280.webp"
+  },
+  {
+   "sku": "249254",
+   "nombre": "Caja puntilla 1 pulgada acerada",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Unidad",
+   "precio": 9000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=249254",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/249254.webp"
+  },
+  {
+   "sku": "1066457",
+   "nombre": "Caladora Eléctrica  Millenium",
+   "categoria": "Herramientas",
+   "unidad": "Unidad",
+   "precio": 195000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1066457",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1066457.webp"
+  },
+  {
+   "sku": "450567",
+   "nombre": "Canal B6",
+   "categoria": "Estructura y accesorios",
+   "unidad": "Unidad",
+   "precio": 7200,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=450567",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/450567.webp"
+  },
+  {
+   "sku": "1074576",
+   "nombre": "Canal base 9",
+   "categoria": "Estructura y accesorios",
+   "unidad": "Unidad",
+   "precio": 9000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1074576",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1074576.webp"
+  },
+  {
+   "sku": "2670990",
+   "nombre": "Capucha para tornillo para teja o pvc",
+   "categoria": "Teja",
+   "unidad": "Unidad",
+   "precio": 1300,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=2670990",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/2670990.webp"
+  },
+  {
+   "sku": "1074571",
+   "nombre": "Chavos 5/16",
+   "categoria": "Otros",
+   "unidad": "Unidad",
+   "precio": 0,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1074571",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1074571.webp"
+  },
+  {
+   "sku": "272827",
+   "nombre": "Cinta Aislante",
+   "categoria": "Otros",
+   "unidad": "Unidad",
+   "precio": 7000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=272827",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/272827.webp"
+  },
+  {
+   "sku": "1074664",
+   "nombre": "Cinta malla drywall",
+   "categoria": "Estructura y accesorios",
+   "unidad": "Unidad",
+   "precio": 0,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1074664",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1074664.webp"
+  },
+  {
+   "sku": "386658",
+   "nombre": "Clip para wpc",
+   "categoria": "Estructura y accesorios",
+   "unidad": "Unidad",
+   "precio": 0,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=386658",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/386658.webp"
+  },
+  {
+   "sku": "1066520",
+   "nombre": "Combo inalámbrico x4",
+   "categoria": "Herramientas",
+   "unidad": "Unidad",
+   "precio": 865000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1066520",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1066520.webp"
+  },
+  {
+   "sku": "249263",
+   "nombre": "Cornisa Blanca Franja Plata",
+   "categoria": "Cornisas y perfilería",
+   "unidad": "Unidad",
+   "precio": 13000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=249263",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/249263.webp"
+  },
+  {
+   "sku": "249266",
+   "nombre": "Cornisa Café Cedro 1148",
+   "categoria": "Cornisas y perfilería",
+   "unidad": "Unidad",
+   "precio": 13000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=249266",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/249266.webp"
+  },
+  {
+   "sku": "249265",
+   "nombre": "Cornisa Café Pino Claro l-2630",
+   "categoria": "Cornisas y perfilería",
+   "unidad": "Unidad",
+   "precio": 13000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=249265",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/249265.webp"
+  },
+  {
+   "sku": "261835",
+   "nombre": "Cornisa Café Pino Oscuro G-012",
+   "categoria": "Cornisas y perfilería",
+   "unidad": "Unidad",
+   "precio": 13000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=261835",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/261835.webp"
+  },
+  {
+   "sku": "249264",
+   "nombre": "Cornisa Gris Humo 3345",
+   "categoria": "Cornisas y perfilería",
+   "unidad": "Unidad",
+   "precio": 13000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=249264",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/249264.webp"
+  },
+  {
+   "sku": "1341356",
+   "nombre": "Cornisa Importada Alej 1004",
+   "categoria": "Cornisas y perfilería",
+   "unidad": "Unidad",
+   "precio": 13000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1341356",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1341356.webp"
+  },
+  {
+   "sku": "2780270",
+   "nombre": "Cornisa L015 pino suave",
+   "categoria": "Cornisas y perfilería",
+   "unidad": "Unidad",
+   "precio": 13000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=2780270",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/2780270.webp"
+  },
+  {
+   "sku": "2780269",
+   "nombre": "Cornisa L843 café",
+   "categoria": "Cornisas y perfilería",
+   "unidad": "Unidad",
+   "precio": 13000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=2780269",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/2780269.webp"
+  },
+  {
+   "sku": "1341354",
+   "nombre": "Cornisa Nacional L838",
+   "categoria": "Cornisas y perfilería",
+   "unidad": "Unidad",
+   "precio": 13000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1341354",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1341354.webp"
+  },
+  {
+   "sku": "1341350",
+   "nombre": "Cornisa nacional L9013",
+   "categoria": "Cornisas y perfilería",
+   "unidad": "Unidad",
+   "precio": 13000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1341350",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1341350.webp"
+  },
+  {
+   "sku": "3479091",
+   "nombre": "Cornisa nacional negro",
+   "categoria": "Cornisas y perfilería",
+   "unidad": "Unidad",
+   "precio": 15000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=3479091",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/3479091.webp"
+  },
+  {
+   "sku": "331413",
+   "nombre": "Cornisa T-84 Avena",
+   "categoria": "Cornisas y perfilería",
+   "unidad": "Unidad",
+   "precio": 13000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=331413",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/331413.webp"
+  },
+  {
+   "sku": "263273",
+   "nombre": "Espejos Ref. 1001 Copas",
+   "categoria": "Decoración e iluminación",
+   "unidad": "Unidad",
+   "precio": 30000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=263273",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/263273.webp"
+  },
+  {
+   "sku": "263274",
+   "nombre": "Espejos Ref. 1002 Semi Cuadrado",
+   "categoria": "Decoración e iluminación",
+   "unidad": "Unidad",
+   "precio": 30000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=263274",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/263274.webp"
+  },
+  {
+   "sku": "263275",
+   "nombre": "Espejos Ref. 1010 Ovalado",
+   "categoria": "Decoración e iluminación",
+   "unidad": "Unidad",
+   "precio": 30000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=263275",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/263275.webp"
+  },
+  {
+   "sku": "1074586",
+   "nombre": "Eterboard 6mm",
+   "categoria": "Drywall y fibrocemento",
+   "unidad": "Unidad",
+   "precio": 69500,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1074586",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1074586.webp"
+  },
+  {
+   "sku": "3466263",
+   "nombre": "Fulminante con puntilla acerada",
+   "categoria": "Estructura y accesorios",
+   "unidad": "Unidad",
+   "precio": 60000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=3466263",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/3466263.webp"
+  },
+  {
+   "sku": "249281",
+   "nombre": "Fulminante para tiros",
+   "categoria": "Estructura y accesorios",
+   "unidad": "Unidad",
+   "precio": 30000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=249281",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/249281.webp"
+  },
+  {
+   "sku": "263277",
+   "nombre": "Guardaescoba en PVC Blanco de 3m",
+   "categoria": "Decoración e iluminación",
+   "unidad": "Unidad",
+   "precio": 32000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=263277",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/263277.webp"
+  },
+  {
+   "sku": "2741784",
+   "nombre": "Guardaescobas blanco en U",
+   "categoria": "Otros",
+   "unidad": "Unidad",
+   "precio": 22000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=2741784",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/2741784.webp"
+  },
+  {
+   "sku": "1341325",
+   "nombre": "Guía para pulidora",
+   "categoria": "Herramientas",
+   "unidad": "Unidad",
+   "precio": 95000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1341325",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1341325.webp"
+  },
+  {
+   "sku": "1088516",
+   "nombre": "hidro lavadora inalámbrica",
+   "categoria": "Herramientas",
+   "unidad": "Unidad",
+   "precio": 220000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1088516",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1088516.webp"
+  },
+  {
+   "sku": "1016925",
+   "nombre": "Hoja de segueta",
+   "categoria": "Herramientas",
+   "unidad": "Unidad",
+   "precio": 0,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1016925",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1016925.webp"
+  },
+  {
+   "sku": "1356323",
+   "nombre": "Juego de copas 52 piezas",
+   "categoria": "Herramientas",
+   "unidad": "Unidad",
+   "precio": 95000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1356323",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1356323.webp"
+  },
+  {
+   "sku": "2666421",
+   "nombre": "L012 CORNIZA BLANCA",
+   "categoria": "Cornisas y perfilería",
+   "unidad": "Unidad",
+   "precio": 13000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=2666421",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/2666421.webp"
+  },
+  {
+   "sku": "261860",
+   "nombre": "Lamina 30x9 Ejecutivo Nacional #612",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 30000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=261860",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/261860.webp"
+  },
+  {
+   "sku": "960220",
+   "nombre": "Lamina 30x9 nacional marmol Y068-2",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 30000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=960220",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/960220.webp"
+  },
+  {
+   "sku": "1146681",
+   "nombre": "Lamina 30x9 Nacional T3F003-9",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 35000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1146681",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1146681.webp"
+  },
+  {
+   "sku": "1341246",
+   "nombre": "Lamina 30x 9 nacional T3F009-3",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 35000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1341246",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1341246.webp"
+  },
+  {
+   "sku": "1341259",
+   "nombre": "Lámina 30x9 nacional T90266-3",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 35000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1341259",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1341259.webp"
+  },
+  {
+   "sku": "1341256",
+   "nombre": "Lámina 30x9 nacional T90407-9",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 35000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1341256",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1341256.webp"
+  },
+  {
+   "sku": "1146684",
+   "nombre": "Lámina 30x9 Nacional Y002marmol  avena gris",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 30000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1146684",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1146684.webp"
+  },
+  {
+   "sku": "261837",
+   "nombre": "Lamina de 40cms 3D",
+   "categoria": "Decoración e iluminación",
+   "unidad": "Lámina",
+   "precio": 58000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=261837",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/261837.webp"
+  },
+  {
+   "sku": "3497467",
+   "nombre": "Lamina Drywall",
+   "categoria": "Drywall y fibrocemento",
+   "unidad": "Lámina",
+   "precio": 54000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=3497467",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/3497467.webp"
+  },
+  {
+   "sku": "1798810",
+   "nombre": "Lamina importada Humo",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 32000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1798810",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1798810.webp"
+  },
+  {
+   "sku": "3470891",
+   "nombre": "Lamina importada humo tres líneas",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 32000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=3470891",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/3470891.webp"
+  },
+  {
+   "sku": "1798811",
+   "nombre": "Lamina importada jaspeado 3 lín",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 32000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1798811",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1798811.webp"
+  },
+  {
+   "sku": "1798808",
+   "nombre": "Lamina Importada Mármol blanco",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 32000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1798808",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1798808.webp"
+  },
+  {
+   "sku": "1227962",
+   "nombre": "Lamina Jaspeada nacional 30x9 9740-2",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 30000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1227962",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1227962.webp"
+  },
+  {
+   "sku": "249236",
+   "nombre": "Lamina Marmol Avena 30x9 m073",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 35000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=249236",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/249236.webp"
+  },
+  {
+   "sku": "249235",
+   "nombre": "Lamina Marmol gris 3500 30x9",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 30000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=249235",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/249235.webp"
+  },
+  {
+   "sku": "3470894",
+   "nombre": "Lamina Marmol importada",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 32000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=3470894",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/3470894.webp"
+  },
+  {
+   "sku": "1341341",
+   "nombre": "Lamina mármol ref alej 001",
+   "categoria": "Lámina UV mármol",
+   "unidad": "Lámina",
+   "precio": 110000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1341341",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1341341.webp"
+  },
+  {
+   "sku": "2666332",
+   "nombre": "Lámina nacional 012-3 blanco nacional",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 30000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=2666332",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/2666332.webp"
+  },
+  {
+   "sku": "2024862",
+   "nombre": "Lámina Nacional 3566-3 y T3Y068",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 30000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=2024862",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/2024862.webp"
+  },
+  {
+   "sku": "261866",
+   "nombre": "Lamina nacional 5328 30x9 (Ejecutivo Olas )",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 30000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=261866",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/261866.webp"
+  },
+  {
+   "sku": "263243",
+   "nombre": "Lamina nacional Blanco 30x9 Mosquera",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 30000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=263243",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/263243.webp"
+  },
+  {
+   "sku": "583629",
+   "nombre": "Lámina Nacional blanco mate 30x9mm",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 33000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=583629",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/583629.webp"
+  },
+  {
+   "sku": "583633",
+   "nombre": "Lámina nacional blanco mate 30x9mm Funza",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 33000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=583633",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/583633.webp"
+  },
+  {
+   "sku": "2026215",
+   "nombre": "Lamina nacional humo 3540",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 30000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=2026215",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/2026215.webp"
+  },
+  {
+   "sku": "3472538",
+   "nombre": "Lamina nacional humo acanalado",
+   "categoria": "Estructura y accesorios",
+   "unidad": "Lámina",
+   "precio": 30000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=3472538",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/3472538.webp"
+  },
+  {
+   "sku": "3472821",
+   "nombre": "Lamina nacional negro textura",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 35000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=3472821",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/3472821.webp"
+  },
+  {
+   "sku": "1798812",
+   "nombre": "Lamina nacional pino claro T90774-3",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 35000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1798812",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1798812.webp"
+  },
+  {
+   "sku": "2666321",
+   "nombre": "Lamina nacional T38606",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 35000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=2666321",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/2666321.webp"
+  },
+  {
+   "sku": "2666323",
+   "nombre": "Lámina nacional T3F012-3",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 35000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=2666323",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/2666323.webp"
+  },
+  {
+   "sku": "1481866",
+   "nombre": "Lámina Nal. 30x9 Y068-2",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 30000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1481866",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1481866.webp"
+  },
+  {
+   "sku": "261849",
+   "nombre": "Lamina Nal M209",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 35000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=261849",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/261849.webp"
+  },
+  {
+   "sku": "1482391",
+   "nombre": "Lámina Nal T6013-9 café rojizo",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 35000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1482391",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1482391.webp"
+  },
+  {
+   "sku": "449280",
+   "nombre": "Lámina pino brillante 3017,  30x9 nacional",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 30000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=449280",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/449280.webp"
+  },
+  {
+   "sku": "1341337",
+   "nombre": "Lamina pu negro",
+   "categoria": "Otros",
+   "unidad": "Unidad",
+   "precio": 60000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1341337",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1341337.webp"
+  },
+  {
+   "sku": "261846",
+   "nombre": "Lamina T3Y007 Jaspeado 3 canal Plata 30x9 Nacional",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 30000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=261846",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/261846.webp"
+  },
+  {
+   "sku": "2666335",
+   "nombre": "Lámina textura T3F003-3",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 35000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=2666335",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/2666335.webp"
+  },
+  {
+   "sku": "2666329",
+   "nombre": "Lámina textura T3F012-3",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 35000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=2666329",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/2666329.webp"
+  },
+  {
+   "sku": "2666308",
+   "nombre": "Lámina textura T3F019-3",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 35000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=2666308",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/2666308.webp"
+  },
+  {
+   "sku": "2666319",
+   "nombre": "Lámina textura T90114-3",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 35000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=2666319",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/2666319.webp"
+  },
+  {
+   "sku": "2666314",
+   "nombre": "Lámina textura T90266",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 35000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=2666314",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/2666314.webp"
+  },
+  {
+   "sku": "2666311",
+   "nombre": "Lámina textura T90407-3",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Lámina",
+   "precio": 35000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=2666311",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/2666311.webp"
+  },
+  {
+   "sku": "791965",
+   "nombre": "Lámina uv 003 blanco dorado",
+   "categoria": "Lámina UV mármol",
+   "unidad": "Lámina",
+   "precio": 110000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=791965",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/791965.webp"
+  },
+  {
+   "sku": "791966",
+   "nombre": "Lámina uv 004 marmol chispa",
+   "categoria": "Lámina UV mármol",
+   "unidad": "Lámina",
+   "precio": 110000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=791966",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/791966.webp"
+  },
+  {
+   "sku": "2131606",
+   "nombre": "lámina uv 9209-1 veneciano verde",
+   "categoria": "Lámina UV mármol",
+   "unidad": "Lámina",
+   "precio": 110000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=2131606",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/2131606.webp"
+  },
+  {
+   "sku": "2131607",
+   "nombre": "Lámina uv F03",
+   "categoria": "Lámina UV mármol",
+   "unidad": "Lámina",
+   "precio": 110000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=2131607",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/2131607.webp"
+  },
+  {
+   "sku": "386647",
+   "nombre": "Lámina wpc",
+   "categoria": "Lámina WPC",
+   "unidad": "Lámina",
+   "precio": 25000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=386647",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/386647.webp"
+  },
+  {
+   "sku": "936819",
+   "nombre": "Lámina Wpc 003",
+   "categoria": "Lámina WPC",
+   "unidad": "Lámina",
+   "precio": 25000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=936819",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/936819.webp"
+  },
+  {
+   "sku": "936823",
+   "nombre": "Lámina Wpc 004",
+   "categoria": "Lámina WPC",
+   "unidad": "Lámina",
+   "precio": 25000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=936823",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/936823.webp"
+  },
+  {
+   "sku": "936825",
+   "nombre": "Lámina Wpc 005",
+   "categoria": "Lámina WPC",
+   "unidad": "Lámina",
+   "precio": 25000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=936825",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/936825.webp"
+  },
+  {
+   "sku": "791975",
+   "nombre": "Lámina wpc dorado 002",
+   "categoria": "Lámina WPC",
+   "unidad": "Lámina",
+   "precio": 25000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=791975",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/791975.webp"
+  },
+  {
+   "sku": "1793178",
+   "nombre": "Lamina wpc gr2901 gris claro",
+   "categoria": "Lámina WPC",
+   "unidad": "Lámina",
+   "precio": 25000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1793178",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1793178.webp"
+  },
+  {
+   "sku": "1793183",
+   "nombre": "lamina Wpc gr2904",
+   "categoria": "Lámina WPC",
+   "unidad": "Lámina",
+   "precio": 25000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1793183",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1793183.webp"
+  },
+  {
+   "sku": "1793171",
+   "nombre": "Lamina Wpc gr2911 negro",
+   "categoria": "Lámina WPC",
+   "unidad": "Lámina",
+   "precio": 25000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1793171",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1793171.webp"
+  },
+  {
+   "sku": "1793185",
+   "nombre": "Lamina Wpc Gr 2933 gris beich",
+   "categoria": "Lámina WPC",
+   "unidad": "Lámina",
+   "precio": 35000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1793185",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1793185.webp"
+  },
+  {
+   "sku": "1371789",
+   "nombre": "Lamina Wpc Mosquera G002 gris oscuro",
+   "categoria": "Lámina WPC",
+   "unidad": "Lámina",
+   "precio": 25000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1371789",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1371789.webp"
+  },
+  {
+   "sku": "1371790",
+   "nombre": "Lámina Wpc Mosquera G003",
+   "categoria": "Lámina WPC",
+   "unidad": "Lámina",
+   "precio": 25000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1371790",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1371790.webp"
+  },
+  {
+   "sku": "791973",
+   "nombre": "Lámina wpc negro 001",
+   "categoria": "Lámina WPC",
+   "unidad": "Lámina",
+   "precio": 25000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=791973",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/791973.webp"
+  },
+  {
+   "sku": "1350688",
+   "nombre": "Lamina Wpc Polivida 001",
+   "categoria": "Lámina WPC",
+   "unidad": "Lámina",
+   "precio": 25000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1350688",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1350688.webp"
+  },
+  {
+   "sku": "2666305",
+   "nombre": "Lámina Wpc vainilla claro",
+   "categoria": "Lámina WPC",
+   "unidad": "Lámina",
+   "precio": 25000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=2666305",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/2666305.webp"
+  },
+  {
+   "sku": "263282",
+   "nombre": "Lámina Wpc Wengue 2.90x0,16",
+   "categoria": "Lámina WPC",
+   "unidad": "Lámina",
+   "precio": 25000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=263282",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/263282.webp"
+  },
+  {
+   "sku": "3656259",
+   "nombre": "Macilla para estucar",
+   "categoria": "Estructura y accesorios",
+   "unidad": "Unidad",
+   "precio": 0,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=3656259",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/3656259.webp"
+  },
+  {
+   "sku": "3017914",
+   "nombre": "Metro cinta brillante",
+   "categoria": "Otros",
+   "unidad": "Metro lineal",
+   "precio": 30000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=3017914",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/3017914.webp"
+  },
+  {
+   "sku": "263276",
+   "nombre": "Metro Rollo papel madecanto para forrar",
+   "categoria": "Decoración e iluminación",
+   "unidad": "Metro lineal",
+   "precio": 7000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=263276",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/263276.webp"
+  },
+  {
+   "sku": "263272",
+   "nombre": "Modular Espejo Londres Ref. 768",
+   "categoria": "Muebles y espejos",
+   "unidad": "Unidad",
+   "precio": 644000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=263272",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/263272.webp"
+  },
+  {
+   "sku": "263270",
+   "nombre": "Modular Espejo Moscú Ref. 767",
+   "categoria": "Muebles y espejos",
+   "unidad": "Unidad",
+   "precio": 640000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=263270",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/263270.webp"
+  },
+  {
+   "sku": "263268",
+   "nombre": "Modular Espejo Orlando Ref. 763",
+   "categoria": "Muebles y espejos",
+   "unidad": "Unidad",
+   "precio": 720000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=263268",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/263268.webp"
+  },
+  {
+   "sku": "263264",
+   "nombre": "Modular Espejo Paris Ref. 754",
+   "categoria": "Muebles y espejos",
+   "unidad": "Unidad",
+   "precio": 720000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=263264",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/263264.webp"
+  },
+  {
+   "sku": "263262",
+   "nombre": "Modular Espejo Pekin Ref. 769",
+   "categoria": "Muebles y espejos",
+   "unidad": "Unidad",
+   "precio": 640000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=263262",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/263262.webp"
+  },
+  {
+   "sku": "263265",
+   "nombre": "Mueble Boston Ref. 761",
+   "categoria": "Muebles y espejos",
+   "unidad": "Unidad",
+   "precio": 640000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=263265",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/263265.webp"
+  },
+  {
+   "sku": "263266",
+   "nombre": "Mueble Tokio Ref. 758",
+   "categoria": "Muebles y espejos",
+   "unidad": "Unidad",
+   "precio": 690000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=263266",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/263266.webp"
+  },
+  {
+   "sku": "3716570",
+   "nombre": "Nivel láser",
+   "categoria": "Herramientas",
+   "unidad": "Unidad",
+   "precio": 280000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=3716570",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/3716570.webp"
+  },
+  {
+   "sku": "3532439",
+   "nombre": "Omega drywall",
+   "categoria": "Estructura y accesorios",
+   "unidad": "Unidad",
+   "precio": 4200,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=3532439",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/3532439.webp"
+  },
+  {
+   "sku": "261843",
+   "nombre": "Paneles 3D Espumados",
+   "categoria": "Decoración e iluminación",
+   "unidad": "Unidad",
+   "precio": 13000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=261843",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/261843.webp"
+  },
+  {
+   "sku": "263253",
+   "nombre": "Panel Frame incrustar 24w",
+   "categoria": "Decoración e iluminación",
+   "unidad": "Unidad",
+   "precio": 12000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=263253",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/263253.webp"
+  },
+  {
+   "sku": "261840",
+   "nombre": "Panel led incrustar 18w redondo",
+   "categoria": "Decoración e iluminación",
+   "unidad": "Unidad",
+   "precio": 10000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=261840",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/261840.webp"
+  },
+  {
+   "sku": "450565",
+   "nombre": "Paral B6",
+   "categoria": "Estructura y accesorios",
+   "unidad": "Unidad",
+   "precio": 10200,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=450565",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/450565.webp"
+  },
+  {
+   "sku": "3530319",
+   "nombre": "Paral base 6",
+   "categoria": "Estructura y accesorios",
+   "unidad": "Unidad",
+   "precio": 7500,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=3530319",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/3530319.webp"
+  },
+  {
+   "sku": "3530321",
+   "nombre": "Paral base 9",
+   "categoria": "Estructura y accesorios",
+   "unidad": "Unidad",
+   "precio": 10500,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=3530321",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/3530321.webp"
+  },
+  {
+   "sku": "936836",
+   "nombre": "Perimetral dorado Wpc esquinero",
+   "categoria": "Cornisas y perfilería",
+   "unidad": "Unidad",
+   "precio": 27000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=936836",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/936836.webp"
+  },
+  {
+   "sku": "936833",
+   "nombre": "Perimetral Dorado wpc unión",
+   "categoria": "Cornisas y perfilería",
+   "unidad": "Unidad",
+   "precio": 27000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=936833",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/936833.webp"
+  },
+  {
+   "sku": "249272",
+   "nombre": "Perimetral en F Blanco",
+   "categoria": "Cornisas y perfilería",
+   "unidad": "Unidad",
+   "precio": 15000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=249272",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/249272.webp"
+  },
+  {
+   "sku": "249273",
+   "nombre": "Perimetral en F Cedro",
+   "categoria": "Cornisas y perfilería",
+   "unidad": "Unidad",
+   "precio": 15000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=249273",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/249273.webp"
+  },
+  {
+   "sku": "261857",
+   "nombre": "Perimetral en W",
+   "categoria": "Cornisas y perfilería",
+   "unidad": "Unidad",
+   "precio": 15000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=261857",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/261857.webp"
+  },
+  {
+   "sku": "261856",
+   "nombre": "Perimetral L",
+   "categoria": "Cornisas y perfilería",
+   "unidad": "Unidad",
+   "precio": 19000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=261856",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/261856.webp"
+  },
+  {
+   "sku": "1090000",
+   "nombre": "Pistola para fulminantes",
+   "categoria": "Herramientas",
+   "unidad": "Unidad",
+   "precio": 100000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1090000",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1090000.webp"
+  },
+  {
+   "sku": "1090002",
+   "nombre": "Polichadora eléctrica",
+   "categoria": "Herramientas",
+   "unidad": "Unidad",
+   "precio": 250000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1090002",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1090002.webp"
+  },
+  {
+   "sku": "249271",
+   "nombre": "Primetral en J Blanco",
+   "categoria": "Cornisas y perfilería",
+   "unidad": "Unidad",
+   "precio": 15000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=249271",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/249271.webp"
+  },
+  {
+   "sku": "1016921",
+   "nombre": "Rejilla de ventilación PVC",
+   "categoria": "Otros",
+   "unidad": "Unidad",
+   "precio": 0,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1016921",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1016921.webp"
+  },
+  {
+   "sku": "583173",
+   "nombre": "Rollo Frescasa",
+   "categoria": "Otros",
+   "unidad": "Unidad",
+   "precio": 130000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=583173",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/583173.webp"
+  },
+  {
+   "sku": "2323395",
+   "nombre": "Rollo Marmol oceanix yp85",
+   "categoria": "Lámina UV mármol",
+   "unidad": "Unidad",
+   "precio": 110000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=2323395",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/2323395.webp"
+  },
+  {
+   "sku": "1066468",
+   "nombre": "Rotomartillo eléctrico",
+   "categoria": "Herramientas",
+   "unidad": "Unidad",
+   "precio": 490000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1066468",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1066468.webp"
+  },
+  {
+   "sku": "1066471",
+   "nombre": "Rotomartillo inalámbrico",
+   "categoria": "Herramientas",
+   "unidad": "Unidad",
+   "precio": 495000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1066471",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1066471.webp"
+  },
+  {
+   "sku": "1066465",
+   "nombre": "Sierra sable inalámbrica",
+   "categoria": "Herramientas",
+   "unidad": "Unidad",
+   "precio": 325000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1066465",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1066465.webp"
+  },
+  {
+   "sku": "249282",
+   "nombre": "Silicona Blanca",
+   "categoria": "Estructura y accesorios",
+   "unidad": "Unidad",
+   "precio": 12000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=249282",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/249282.webp"
+  },
+  {
+   "sku": "1367873",
+   "nombre": "Silicona no más clavos",
+   "categoria": "Otros",
+   "unidad": "Unidad",
+   "precio": 20000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1367873",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1367873.webp"
+  },
+  {
+   "sku": "2666422",
+   "nombre": "T3F019-3",
+   "categoria": "Lámina PVC cielo raso",
+   "unidad": "Unidad",
+   "precio": 35000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=2666422",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/2666422.webp"
+  },
+  {
+   "sku": "582990",
+   "nombre": "Teja colonial en PVC 2mm largo 5,90m",
+   "categoria": "Teja",
+   "unidad": "Unidad",
+   "precio": 195000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=582990",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/582990.webp"
+  },
+  {
+   "sku": "1089923",
+   "nombre": "Teja colonial transparente",
+   "categoria": "Teja",
+   "unidad": "Unidad",
+   "precio": 0,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1089923",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1089923.webp"
+  },
+  {
+   "sku": "261839",
+   "nombre": "Teja pvc 6 mts",
+   "categoria": "Teja",
+   "unidad": "Unidad",
+   "precio": 195000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=261839",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/261839.webp"
+  },
+  {
+   "sku": "1074581",
+   "nombre": "Tornillo drywall 1y1/2",
+   "categoria": "Estructura y accesorios",
+   "unidad": "Unidad",
+   "precio": 40,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1074581",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1074581.webp"
+  },
+  {
+   "sku": "582991",
+   "nombre": "Tornillo para teja Colonial",
+   "categoria": "Teja",
+   "unidad": "Unidad",
+   "precio": 1200,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=582991",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/582991.webp"
+  },
+  {
+   "sku": "249268",
+   "nombre": "Unión H-01 Blanco",
+   "categoria": "Cornisas y perfilería",
+   "unidad": "Unidad",
+   "precio": 15000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=249268",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/249268.webp"
+  },
+  {
+   "sku": "249269",
+   "nombre": "Unión H-02 Gris humo",
+   "categoria": "Cornisas y perfilería",
+   "unidad": "Unidad",
+   "precio": 15000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=249269",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/249269.webp"
+  },
+  {
+   "sku": "249270",
+   "nombre": "Unión H Café",
+   "categoria": "Cornisas y perfilería",
+   "unidad": "Unidad",
+   "precio": 15000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=249270",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/249270.webp"
+  },
+  {
+   "sku": "324715",
+   "nombre": "Union H T-84 Avena",
+   "categoria": "Cornisas y perfilería",
+   "unidad": "Unidad",
+   "precio": 14000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=324715",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/324715.webp"
+  },
+  {
+   "sku": "3532436",
+   "nombre": "Viguetas Drywall",
+   "categoria": "Estructura y accesorios",
+   "unidad": "Unidad",
+   "precio": 4200,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=3532436",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/3532436.webp"
+  },
+  {
+   "sku": "1341369",
+   "nombre": "Y para teja colonial PVC",
+   "categoria": "Teja",
+   "unidad": "Unidad",
+   "precio": 75000,
+   "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=1341369",
+   "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/1341369.webp"
+  }
+ ]
+}
