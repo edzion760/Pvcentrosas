@@ -1,0 +1,1 @@
+{"name": "Catálogo PVCENTRO", "short_name": "Catálogo", "start_url": "catalogo.html", "scope": "./", "display": "standalone", "background_color": "#1e3a8a", "theme_color": "#1e3a8a", "icons": [{"src": "icono-catalogo-180.png", "sizes": "180x180", "type": "image/png"}, {"src": "icono-catalogo-512.png", "sizes": "512x512", "type": "image/png"}]}

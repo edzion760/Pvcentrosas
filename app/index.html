@@ -4,6 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>PVCENTRO – Control del negocio</title>
+<meta name="theme-color" content="#111111">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="icon-512.png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="PVC Control">
 <style>
 :root{--bg:#f4f5f7;--card:#fff;--ink:#1d2330;--mut:#6b7385;--line:#e2e5ec;--pri:#0b5fff;--pri2:#e8f0ff;--ok:#128a4a;--bad:#c62828;--warn:#b26a00;--warnbg:#fff4de}
 @media (prefers-color-scheme:dark){:root{--bg:#12151c;--card:#1b2029;--ink:#e8ebf2;--mut:#98a1b5;--line:#2c3342;--pri:#5b92ff;--pri2:#1c2740;--ok:#3ec47a;--bad:#ff6b6b;--warn:#ffb74d;--warnbg:#3a2d14}}
@@ -513,5 +520,6 @@ function bulkDaily(){const store=$('#b-store').value;let n=0,bad=[];$('#b-txt').
 
 boot();
 </script>
+<script>if('serviceWorker' in navigator&&location.protocol.indexOf('http')===0){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}</script>
 </body>
 </html>
