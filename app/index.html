@@ -75,6 +75,7 @@ pre.rc{background:var(--bg);padding:.8rem;border-radius:8px;white-space:pre-wrap
 .pc .pn{font-size:.85rem;line-height:1.2;height:2.4em;overflow:hidden}.pc .pp{font-weight:700}
 .pc.rapid{align-items:center;justify-content:center;color:var(--ok);font-weight:700;min-height:150px;text-align:center}
 .chips{display:flex;gap:.4rem;overflow-x:auto;padding:.5rem 0}.chips button{flex:none;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:.35rem .8rem;font:inherit;cursor:pointer}.chips button.on{background:var(--pri2);color:var(--pri);border-color:var(--pri)}
+.pfph{display:flex;align-items:center;gap:.8rem;margin:.6rem 0}.pfbig{width:84px!important;height:84px!important;border-radius:10px!important;margin:0!important;flex:none;display:inline-flex;align-items:center;justify-content:center;overflow:hidden;font-size:1.4rem;color:var(--pri)}.pfbig img{width:100%;height:100%;object-fit:cover}.pfbt{display:flex;flex-direction:column;gap:.4rem}.pfl{display:inline-block;text-align:center;cursor:pointer;background:var(--pri);color:#fff;border:1px solid var(--pri);padding:.55rem .9rem;border-radius:8px;user-select:none;-webkit-user-select:none;font-weight:600}
 .th{width:38px;height:38px;border-radius:7px;object-fit:cover;background:var(--pri2);vertical-align:middle;margin-right:.5rem}
 .cartbar{position:sticky;bottom:0;z-index:3}
 .cfab,.shhead{display:none}
@@ -302,7 +303,7 @@ function lineEditor(kind,mode){return`<div class="card"><h3>Productos</h3>
  <div id="res-${kind}"></div><div id="lines-${kind}" style="margin-top:.6rem"></div></div>`}
 function photo(p,cls){const ini=esc((p.name||'?').replace(/[^A-Za-zÁÉÍÓÚÑáéíóúñ0-9 ]/g,'').trim().split(/\s+/).slice(0,2).map(x=>x[0]).join('').toUpperCase());
  const loc='https://edzion760.github.io/Pvcentrosas/imagenes/productos/'+encodeURIComponent(p.sku||'x')+'.webp';const ext=p.img&&!/cloudfront|tiendana/i.test(p.img);const src=ext?p.img:loc,alt=ext?'':(p.img||'');
- return`<img loading="lazy" referrerpolicy="no-referrer" src="${esc(src)}" data-alt="${esc(alt)}" alt="${esc(p.name)}" onerror="if(this.dataset.alt){this.src=this.dataset.alt;this.dataset.alt=''}else this.outerHTML='<span>${ini}</span>'">`}
+ return`<img loading="lazy" referrerpolicy="no-referrer" src="${esc(src)}" data-alt="${esc(alt)}" alt="${esc(p.name)}" onerror="if(this.dataset.alt){this.src=this.dataset.alt;this.dataset.alt=''}else if(this.parentNode)this.outerHTML='<span>${ini}</span>'">`}
 function thumb(p){return`<span class="th" style="display:inline-flex;align-items:center;justify-content:center;overflow:hidden;font-size:.7rem;color:var(--pri)">${photo(p)}</span>`}
 function search(kind){const q=$('#q-'+kind).value.toLowerCase().trim();const box=$('#res-'+kind);if(!q){box.innerHTML='';return}
  const st=kind==='trans'?($('#f-from')?$('#f-from').value:curStore()||'sangil'):($('#f-store')?$('#f-store').value:curStore()||U.store);const K=stock();
@@ -405,14 +406,23 @@ function exportInv(){const P=products(),K=stock(),o=U.role==='owner';xls('invent
 function adjForm(sku){const p=products()[sku],K=(stock()[sku]||{});const st=visStores();
  modal(`<h3>Conteo físico</h3><p>${esc(p.name)}</p><div class="row">${st.map(s=>`<label>${STORES[s]} (sistema: ${fnum(K[s]||0)})<input type="number" step="0.01" id="adj-${s}" placeholder="contado"></label>`).join('')}</div><label>Nota<input id="adj-n" placeholder="motivo (opcional)" style="width:100%"></label><br><br><button class="b p" onclick="saveAdj('${sku}')">Guardar ajuste</button> <button class="b" onclick="closeModal()">Cancelar</button>`)}
 function saveAdj(sku){const p=products()[sku],K=stock()[sku]||{};let n=0;visStores().forEach(s=>{const v=$('#adj-'+s).value;if(v==='')return;const delta=Number(v)-(K[s]||0);if(Math.abs(delta)>1e-9){newRec('adjust',{store:s,date:todayStr(),sku,name:p.name,delta,note:$('#adj-n').value});n++}});closeModal();toast(n?'Ajuste guardado':'Sin diferencias');go()}
-function prodForm(sku){const p=sku?products()[sku]:{sku:'',name:'',cat:'Otros',unit:'Unidad',cost:0,price:0,min:0,iva:.19};const cats=[...new Set(Object.values(products()).map(x=>x.cat))].sort();
+let PF_IMG='';
+function pfPrev(){const e=$('#pf-prev');if(!e)return;const nm=($('#pf-name')||{}).value||'';const sk=($('#pf-sku')||{}).value||'';e.innerHTML=photo({sku:PF_FORMSKU||sk,name:nm||'Foto',img:PF_IMG});const d=$('#pf-del');if(d)d.style.display=PF_IMG?'':'none'}
+let PF_FORMSKU='';
+function pfPick(inp){const f=inp.files&&inp.files[0];if(!f)return;const u=URL.createObjectURL(f);const im=new Image();
+ im.onload=()=>{let max=480,q=.72,out='';for(let i=0;i<8;i++){const sc=Math.min(1,max/Math.max(im.width,im.height));const c=document.createElement('canvas');c.width=Math.max(1,Math.round(im.width*sc));c.height=Math.max(1,Math.round(im.height*sc));const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);out=c.toDataURL('image/jpeg',q);if(out.length<=30000)break;max=Math.round(max*.8);q=Math.max(.5,q-.05)}
+  URL.revokeObjectURL(u);inp.value='';if(out.length>40000)return toast('No se pudo reducir la foto, prueba con otra');
+  PF_IMG=out;const l=$('#pf-img');if(l)l.value='';pfPrev();toast('Foto lista')};
+ im.onerror=()=>{URL.revokeObjectURL(u);toast('No se pudo leer esa foto')};im.src=u}
+function prodForm(sku){const p=sku?products()[sku]:{sku:'',name:'',cat:'Otros',unit:'Unidad',cost:0,price:0,min:0,iva:.19};PF_IMG=p.img||'';PF_FORMSKU=sku||'';const cats=[...new Set(Object.values(products()).map(x=>x.cat))].sort();
  modal(`<h3>${sku?'Editar':'Nuevo'} producto</h3><div class="row"><label>Código<input id="pf-sku" value="${esc(p.sku)}" ${sku?'disabled':''} placeholder="automático si lo dejas vacío"></label><label style="flex:1">Nombre<input id="pf-name" value="${esc(p.name)}"></label></div>
  <div class="row"><label>Categoría<input id="pf-cat" list="cats" value="${esc(p.cat)}"><datalist id="cats">${cats.map(c=>`<option>${esc(c)}</option>`).join('')}</datalist></label><label>Unidad<input id="pf-unit" value="${esc(p.unit)}" style="width:90px"></label></div>
  <div class="row"><label>Costo c/IVA<input id="pf-cost" inputmode="numeric" value="${fnum(p.cost)}"></label><label>Precio c/IVA<input id="pf-price" inputmode="numeric" value="${fnum(p.price)}"></label><label>Stock mínimo<input id="pf-min" type="number" value="${p.min||0}" style="width:90px"></label></div>
- <div class="row"><label style="flex:1">Enlace de la foto (opcional)<input id="pf-img" value="${esc(p.img||'')}" placeholder="https://…" style="width:100%"></label></div>
- <button class="b p" onclick="saveProd('${sku||''}')">Guardar</button> <button class="b" onclick="closeModal()">Cancelar</button>`)}
+ <div class="pfph"><span id="pf-prev" class="th pfbig"></span><div class="pfbt"><label class="b pfl">📷 Tomar o elegir foto<input type="file" accept="image/*" onchange="pfPick(this)" style="display:none"></label><button type="button" class="b" id="pf-del" onclick="PF_IMG='';pfPrev()">Quitar</button></div></div>
+ <div class="row"><label style="flex:1">…o pega un enlace de foto (opcional)<input id="pf-img" value="${PF_IMG.startsWith('data:')?'':esc(PF_IMG)}" placeholder="https://…" style="width:100%" oninput="PF_IMG=this.value.trim();pfPrev()"></label></div>
+ <button class="b p" onclick="saveProd('${sku||''}')">Guardar</button> <button class="b" onclick="closeModal()">Cancelar</button>`);pfPrev()}
 function saveProd(sku){let k=sku||$('#pf-sku').value.trim().replace(/[^A-Za-z0-9_-]/g,'');if(!k)k='N'+Date.now().toString(36).toUpperCase();const name=$('#pf-name').value.trim();if(!name)return toast('Falta el nombre');if(!sku&&products()[k])return toast('Ya existe ese código');
- const data={sku:k,name,cat:$('#pf-cat').value.trim()||'Otros',unit:$('#pf-unit').value.trim()||'Unidad',cost:cop($('#pf-cost').value),price:cop($('#pf-price').value),min:Number($('#pf-min').value)||0,iva:.19,img:$('#pf-img').value.trim()};
+ const data={sku:k,name,cat:$('#pf-cat').value.trim()||'Otros',unit:$('#pf-unit').value.trim()||'Unidad',cost:cop($('#pf-cost').value),price:cop($('#pf-price').value),min:Number($('#pf-min').value)||0,iva:.19,img:PF_IMG};
  const id='P'+k;db.records[id]={id,type:'product',sku:k,store:'sangil',date:todayStr(),by:U.name,ts:Date.now(),data};save();closeModal();go()}
 
 /* ============ COMPRAS ============ */
