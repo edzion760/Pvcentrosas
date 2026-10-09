@@ -75,7 +75,7 @@ pre.rc{background:var(--bg);padding:.8rem;border-radius:8px;white-space:pre-wrap
 .pc .pn{font-size:.85rem;line-height:1.2;height:2.4em;overflow:hidden}.pc .pp{font-weight:700}
 .pc.rapid{align-items:center;justify-content:center;color:var(--ok);font-weight:700;min-height:150px;text-align:center}
 .chips{display:flex;gap:.4rem;overflow-x:auto;padding:.5rem 0}.chips button{flex:none;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:.35rem .8rem;font:inherit;cursor:pointer}.chips button.on{background:var(--pri2);color:var(--pri);border-color:var(--pri)}
-.pfph{display:flex;align-items:center;gap:.8rem;margin:.6rem 0}.pfbig{width:84px!important;height:84px!important;border-radius:10px!important;margin:0!important;flex:none;display:inline-flex;align-items:center;justify-content:center;overflow:hidden;font-size:1.4rem;color:var(--pri)}.pfbig img{width:100%;height:100%;object-fit:cover}.pfbt{display:flex;flex-direction:column;gap:.4rem}.pfl{display:inline-block;text-align:center;cursor:pointer;background:var(--pri);color:#fff;border:1px solid var(--pri);padding:.55rem .9rem;border-radius:8px;user-select:none;-webkit-user-select:none;font-weight:600}
+.pfph{display:flex;align-items:center;gap:.8rem;margin:.6rem 0}.pfbig{width:84px!important;height:84px!important;border-radius:10px!important;margin:0!important;flex:none;display:inline-flex;align-items:center;justify-content:center;overflow:hidden;font-size:1.4rem;color:var(--pri)}.pfbig img{width:100%;height:100%;object-fit:cover}.pfbt{display:flex;flex-direction:column;gap:.4rem}.pfl{display:inline-block;text-align:center;cursor:pointer;background:var(--pri);color:#fff!important;font-size:1rem!important;border:1px solid var(--pri);padding:.55rem .9rem;border-radius:8px;user-select:none;-webkit-user-select:none;font-weight:600}
 .th{width:38px;height:38px;border-radius:7px;object-fit:cover;background:var(--pri2);vertical-align:middle;margin-right:.5rem}
 .cartbar{position:sticky;bottom:0;z-index:3}
 .cfab,.shhead{display:none}
@@ -115,7 +115,10 @@ pre.rc{background:var(--bg);padding:.8rem;border-radius:8px;white-space:pre-wrap
  .rt td[data-l]::before{content:attr(data-l);color:var(--mut);font-size:.8rem;text-align:left;flex:none}
  .rt td.hide-s{display:flex}
  .rt td.pn1{display:block;text-align:left;font-weight:600;padding-bottom:.4rem;border-bottom:1px solid var(--line);margin-bottom:.2rem}
- .rt td.act{justify-content:flex-end;flex-wrap:wrap;padding-top:.4rem}
+ .wab{background:#25D366;border:0;border-radius:50%;width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;padding:0;cursor:pointer;margin-right:.35rem;flex:none}
+.wab2{display:inline-flex;align-items:center;gap:.4rem;background:#25D366!important;color:#fff!important;border:0!important;font-weight:600;margin-left:.4rem}
+.wab2 svg{width:18px;height:18px}
+.rt td.act{justify-content:flex-end;flex-wrap:wrap;padding-top:.4rem}
  .rt td.act .b{padding:.5rem .8rem}
  .tw{max-height:none;overflow:visible}
  .row>label.full{flex:1 1 100%}.row>label.full input{width:100%}
@@ -267,15 +270,15 @@ function enter(k){closeModal();U=Object.assign({id:k},db.users[k]);try{localStor
  S.tab='home';S.store='all';setTimeout(()=>cloudSync(),600);S.carts={sale:[],buy:[],trans:[],recv:[]};shell()}
 
 /* ============ CASCARÓN ============ */
-const TABS=[['home','Inicio'],['sale','Vender'],['sales','Ventas'],['inv','Inventario'],['buy','Compras',1],['recv','Recibir mercancía',2],['exp','Gastos'],['trans','Traslados'],['cash','Caja'],['rep','Reportes',1],['sync','Sincronizar / Respaldo'],['set','Ajustes',1]];
+const TABS=[['home','Inicio'],['sale','Vender'],['qr','QR pagos'],['sales','Ventas'],['inv','Inventario'],['buy','Compras',1],['recv','Recibir mercancía',2],['exp','Gastos'],['trans','Traslados'],['cash','Caja'],['rep','Reportes',1],['sync','Sincronizar / Respaldo'],['set','Ajustes',1]];
 function shell(){const vis=TABS.filter(t=>t[2]===1?U.role==='owner':t[2]===2?U.role!=='owner':true);
  $('#app').innerHTML=`<div class="top"><header><b>PVCENTRO</b><span class="tag">${esc(U.name)} · ${U.role==='owner'?'Propietario':STORES[U.store]}</span>
   ${U.role==='owner'?`<select onchange="S.store=this.value;go()" title="Ver tienda"><option value="all">Ambas tiendas</option>${Object.entries(STORES).map(([k,v])=>`<option value="${k}" ${S.store===k?'selected':''}>${v}</option>`).join('')}</select>`:''}
   <span id="cloudst" class="tag" style="display:none"></span><span class="sp"></span><button class="b s" onclick="loginView()">Salir</button></header>
   <div id="warnstore" class="alert" style="display:none;border-radius:0;margin:0">⚠ Los datos NO se están guardando en este navegador. Abre el archivo con Chrome o Edge y no desde una vista previa.</div>
-  <nav>${vis.map(t=>`<button data-t="${t[0]}" class="${S.tab===t[0]?'on':''}" onclick="S.tab='${t[0]}';go()">${t[1]}</button>`).join('')}</nav></div><main id="main"></main>`;go();statNow()}
+  <nav>${vis.map(t=>`<button data-t="${t[0]}" class="${S.tab===t[0]?'on':''}" onclick="S.tab='${t[0]}';go()">${t[1]}</button>`).join('')}<button onclick="window.open(CAT_URL,'_blank')">Catálogo ↗</button></nav></div><main id="main"></main>`;go();statNow()}
 function go(){if(!U||!$('#main'))return;document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.t===S.tab));
- const v={home:vHome,sale:vSell,sales:vSales,inv:vInv,buy:vBuy,recv:vRecv,exp:vExp,trans:vTrans,cash:vCash,rep:vRep,sync:vSync,set:vSet}[S.tab];
+ const v={home:vHome,sale:vSell,qr:vQR,sales:vSales,inv:vInv,buy:vBuy,recv:vRecv,exp:vExp,trans:vTrans,cash:vCash,rep:vRep,sync:vSync,set:vSet}[S.tab];
  $('#main').innerHTML=v();if(!persistOK&&db){const b=$('#warnstore');if(b&&idb===null)b.style.display='block'}window.scrollTo(0,0);const f=$('#main').querySelector('[autofocus]');if(f)f.focus()}
 const storeSel=(id,val)=>U.role==='owner'?`<label>Tienda<select id="${id}">${Object.entries(STORES).map(([k,v])=>`<option value="${k}" ${(val||curStore())===k?'selected':''}>${v}</option>`).join('')}</select></label>`:`<input type="hidden" id="${id}" value="${U.store}">`;
 const dateInp=(id,v)=>`<label>Fecha<input type="date" id="${id}" value="${v||todayStr()}"></label>`;
@@ -297,6 +300,7 @@ function vHome(){const d=todayStr();const st=visStores();const P=products(),K=st
  const last=recs().filter(r=>['sale','daily','expense','purchase','transfer','collect'].includes(r.type)&&!r.void&&inScope(r)).sort((a,b)=>b.ts-a.ts).slice(0,8);
  return`<h2>Hola ${esc(U.name)}</h2>${alerts.map(a=>`<div class="alert">${a}</div>`).join('')}
  <div class="grid" style="margin-bottom:1rem">${cards}${mon}</div>
+ <div class="card"><h3>Catálogo para clientes</h3><p class="mut">Fotos y precios actualizados. Ábrelo o envíaselo al cliente por WhatsApp.</p><div class="row"><button class="b p" onclick="window.open(CAT_URL,'_blank')">Abrir catálogo</button><button class="b" onclick="copyText(CAT_URL)">Copiar enlace</button><button class="b" onclick="window.open('https://wa.me/?text='+encodeURIComponent('Catálogo PVCENTRO con fotos y precios: '+CAT_URL),'_blank')">Enviar por WhatsApp</button></div></div>
  <div class="card"><h3>Últimos movimientos</h3>${last.length?`<div class="tw"><table><tr><th>Fecha</th><th>Tipo</th><th>Tienda</th><th>Detalle</th><th class="n">Valor</th></tr>${last.map(r=>`<tr><td>${dmy(r.date)}</td><td>${tipo(r)}</td><td>${STORES[r.store||r.from]||''}</td><td>${esc(detalle(r))}</td><td class="n">${fmt(r.total||r.amount||0)}</td></tr>`).join('')}</table></div>`:'<p class="mut">Aún no hay movimientos. Empieza en <b>Vender</b>.</p>'}</div>`}
 const tipo=r=>({sale:'Venta',daily:'Venta (resumen)',expense:'Gasto',purchase:'Compra',transfer:'Traslado',collect:'Cobro',adjust:'Ajuste'})[r.type]||r.type;
 const detalle=r=>r.type==='sale'?`${r.num} · ${r.customer||'Mostrador'} · ${r.method}`:r.type==='daily'?'Resumen del día':r.type==='expense'?`${r.cat}: ${r.desc||''}`:r.type==='purchase'?`${r.supplier||''} ${r.fact||''}`:r.type==='transfer'?`${STORES[r.from]} → ${STORES[r.to]}`:r.type==='collect'?'Cobro de crédito':'';
@@ -356,6 +360,7 @@ function vSell(){S.carts.sale=S.carts.sale||[];S.lim=48;document.body.classList.
  <div class="card"><div class="row">
  <label>Cliente<input id="f-cust" placeholder="Mostrador / nombre" style="min-width:200px"></label>
  <label>Forma de pago<select id="f-method">${METHODS.map(m=>`<option>${m}</option>`).join('')}</select></label>
+ <button type="button" class="b s" onclick="qrFull($('#f-store').value)">Mostrar QR de pago</button>
  <label>Descuento $<input id="f-disc" inputmode="numeric" value="0" style="width:110px" oninput="drawTot('sale')"></label>
  <label>No. factura electrónica (Facturatech)<input id="f-fact" placeholder="opcional"></label></div>
  <label style="font-size:.9rem"><input type="checkbox" id="f-ret" onchange="drawTot('sale')"> El cliente practicó retención en la fuente (2,5%)</label></div>
@@ -377,6 +382,29 @@ function saveSale(){const c=S.carts.sale;if(!c.length)return toast('Agrega al me
  S.carts.sale=[];showReceipt(r,true)}
 function receiptText(r){return`*PVCENTRO – ${STORES[r.store]}*\nVenta ${r.num} · ${dmy(r.date)}\nCliente: ${r.customer||'Mostrador'}\n`+r.lines.map(l=>`• ${l.name} x${l.qty} = ${fmt(l.qty*l.price)}`).join('\n')+(r.disc?`\nDescuento: -${fmt(r.disc)}`:'')+`\n*TOTAL: ${fmt(r.total)}* (${r.method})`+(r.ret?`\nRetención: ${fmt(r.ret)}`:'')+(r.fact?`\nFactura electrónica: ${r.fact}`:'')+`\nVendedor: ${r.by}`}
 function showReceipt(r,isNew){const nm={sale:'venta',purchase:(r.recv||r.pending)?'recepción':'compra',transfer:'traslado'}[r.type]||'movimiento';docModal(r,isNew?'✔ '+nm[0].toUpperCase()+nm.slice(1)+' guardada':'Soporte de '+nm)}
+
+/* ============ CATÁLOGO Y QR DE PAGOS ============ */
+const CAT_URL='https://edzion760.github.io/Pvcentrosas/catalogo.html';
+const qrStore=()=>U.role==='owner'?(S.qrStore||(S.store!=='all'&&S.store)||'sangil'):U.store;
+const qrSrc=s=>(db.qr&&db.qr[s])||('./qr-'+s+'.png');
+function vQR(){const s=qrStore(),cap=(db.qrCap||{})[s]||'';
+ return`<h2>QR pagos en línea</h2>
+ ${U.role==='owner'?`<div class="row"><label>Tienda<select onchange="S.qrStore=this.value;go()">${Object.entries(STORES).map(([k,v])=>`<option value="${k}" ${s===k?'selected':''}>${v}</option>`).join('')}</select></label></div>`:`<p class="mut">${STORES[s]}</p>`}
+ <div class="card" style="text-align:center"><div id="qrbox"><img id="qrimg" src="${esc(qrSrc(s))}" alt="QR de pago" style="width:100%;max-width:420px;background:#fff;padding:10px;border-radius:10px;border:1px solid var(--line);cursor:zoom-in" onclick="qrFull('${s}')" onerror="qrMissing('${s}')"></div>
+ <p style="font-weight:600;margin:.6rem 0 0">${esc(cap)}</p><p class="mut" id="qrhint">Toca el QR para verlo en grande y que el cliente lo escanee. Cuando pague, registra la venta con forma de pago <b>Transferencia</b>.</p></div>
+ <div class="card"><h3>Cargar o cambiar el QR en este celular</h3><p class="mut">Elige la imagen del QR (captura o foto). Solo se guarda en este celular.</p>
+ <div class="row"><label class="b pfl" style="cursor:pointer">Elegir imagen del QR<input type="file" accept="image/*" style="display:none" onchange="qrPick(this,'${s}')"></label><button class="b" onclick="qrDel('${s}')">Quitar el de este celular</button></div>
+ <label style="display:block;margin-top:.6rem;font-size:.8rem;color:var(--mut)">Texto bajo el QR (opcional, ej. Nequi o Bancolombia a nombre de Industrias S-73)<input id="qr-cap" value="${esc(cap)}" style="width:100%" onchange="qrCap('${s}',this.value)"></label></div>`}
+function qrMissing(s){const b=$('#qrbox');if(b)b.innerHTML=`<p class="mut" style="padding:1rem 0">Todavía no hay un QR cargado para ${STORES[s]}. Toca <b>Elegir imagen del QR</b> aquí abajo, o pídele a Edison que lo suba.</p>`;const h=$('#qrhint');if(h)h.style.display='none'}
+function qrFull(s){s=s||qrStore();const cap=(db.qrCap||{})[s]||'';modal(`<div style="text-align:center"><h3>QR de pago · ${STORES[s]}</h3><img src="${esc(qrSrc(s))}" alt="QR de pago" style="width:100%;max-width:720px;background:#fff;padding:8px;border-radius:10px" onerror="this.outerHTML='<p class=&quot;mut&quot;>Todavía no hay un QR cargado para ${STORES[s]}. Ve a la pestaña QR pagos para cargarlo.</p>'"><p style="font-weight:600">${esc(cap)}</p><button class="b" onclick="closeModal()">Cerrar</button></div>`)}
+function qrPick(inp,s){const f=inp.files&&inp.files[0];if(!f)return;const u=URL.createObjectURL(f),im=new Image();
+ im.onload=()=>{const sc=Math.min(1,900/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*sc);c.height=Math.round(im.height*sc);const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);
+  let d=c.toDataURL('image/png');if(d.length>700000)d=c.toDataURL('image/jpeg',.92);URL.revokeObjectURL(u);inp.value='';
+  db.qr=db.qr||{};db.qr[s]=d;save(true);toast('QR guardado en este celular');go()};
+ im.onerror=()=>{URL.revokeObjectURL(u);toast('No se pudo leer esa imagen')};im.src=u}
+function qrDel(s){if(db.qr)delete db.qr[s];save(true);toast('Listo');go()}
+function qrCap(s,v){db.qrCap=db.qrCap||{};db.qrCap[s]=v.trim();save(true);toast('Texto guardado');go()}
+
 /* ============ SOPORTES (tiquete en imagen) ============ */
 const BIZ={owner:'INDUSTRIAS S-73',nit:'91077469-2',mail:'pvcentrocol@gmail.com',tag:'Venta de todo lo relacionado para instalar su cielo raso pvc',
  sangil:{sede:'Sede San Gil',addr:'Carrera 17 # 26-59, San Gil',tel:'316 553 5911'},
@@ -523,12 +551,20 @@ function saveCost(id){const r=db.records[id];let total=0;r.lines.forEach((l,i)=>
  touch(r);closeModal();toast('Costos guardados');go()}
 
 /* ============ GASTOS ============ */
-function vExp(){const st=curStore();const list=recs().filter(r=>r.type==='expense'&&r.date>=S.from&&r.date<=S.to&&(!st||r.store===st)).sort((a,b)=>b.date.localeCompare(a.date)||b.ts-a.ts);
+const WA_ICO=`<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="#fff" d="M12 2.2a9.8 9.8 0 0 0-8.4 14.8L2.3 21.8l4.9-1.3A9.8 9.8 0 1 0 12 2.2z"/><path fill="#25D366" d="M8.7 7.3c-.3 0-.7.2-.9.6-.5.9-.3 2.3 1.1 4 1.5 1.8 3.2 2.7 4.5 2.7.6 0 1.2-.3 1.4-.9l.2-.6c.1-.3 0-.5-.3-.7l-1.4-.7c-.2-.1-.5 0-.6.2l-.5.6c-.9-.3-2-1.3-2.4-2.2l.5-.5c.2-.2.2-.4.1-.6l-.6-1.4c-.1-.3-.3-.5-.6-.5z"/></svg>`;
+const expList=()=>{const st=curStore();return recs().filter(r=>r.type==='expense'&&r.date>=S.from&&r.date<=S.to&&(!st||r.store===st)).sort((a,b)=>b.date.localeCompare(a.date)||b.ts-a.ts)};
+function waSend(t){window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank')}
+function expText(r){return`*PVCENTRO – ${STORES[r.store]}*\nGasto · ${dmy(r.date)}\nCategoría: ${r.cat}${r.desc?'\nDescripción: '+r.desc:''}\n*Valor: ${fmt(r.amount)}* (${r.method})\nRegistró: ${r.by||''}${r.void?'\n*** ANULADO ***':''}`}
+function shareExp(id){waSend(expText(db.records[id]))}
+function shareExpList(){const st=curStore(),l=expList().filter(r=>!r.void);if(!l.length)return toast('No hay gastos en este período');
+ const byCat={};l.forEach(r=>byCat[r.cat]=(byCat[r.cat]||0)+r.amount);const tot=l.reduce((a,r)=>a+r.amount,0);
+ waSend(`*PVCENTRO – Gastos${st?' '+STORES[st]:' (ambas tiendas)'}*\n${S.from===S.to?dmy(S.from):dmy(S.from)+' al '+dmy(S.to)}\n`+l.map(r=>`• ${dmy(r.date).slice(0,5)}${st?'':' '+STORES[r.store]} · ${r.cat}${r.desc?' · '+r.desc:''} — ${fmt(r.amount)}`).join('\n')+`\n\n`+Object.entries(byCat).map(([k,v])=>`${k}: ${fmt(v)}`).join('\n')+`\n*TOTAL: ${fmt(tot)}*`)}
+function vExp(){const st=curStore();const list=expList();
  return`<h2>Gastos</h2><div class="card"><div class="row">${storeSel('e-store')}${dateInp('e-date')}<label>Categoría<select id="e-cat">${CATS_EXP.map(c=>`<option>${c}</option>`).join('')}</select></label>
  <label>Descripción<input id="e-desc" style="min-width:180px"></label><label>Valor<input id="e-amt" inputmode="numeric" style="width:120px"></label><label>Pago<select id="e-met"><option>Efectivo</option><option>Transferencia</option><option>Tarjeta</option></select></label>
  <button class="b p" onclick="saveExp()">Guardar</button></div></div>
- <div class="kpi" style="margin-bottom:.8rem;display:inline-block"><small>Gastos de hoy${st?' · '+STORES[st]:''}</small><b>${fmt(recs().filter(r=>r.type==='expense'&&!r.void&&r.date===todayStr()&&(!st||r.store===st)).reduce((a,r)=>a+r.amount,0))}</b></div>${rangeBar()}<div class="card"><p><b>${fmt(list.filter(r=>!r.void).reduce((a,r)=>a+r.amount,0))}</b> en el período</p><div class="tw"><table class="rt"><tr><th>Fecha</th><th>Tienda</th><th>Categoría</th><th>Descripción</th><th class="n">Valor</th><th></th></tr>
- ${list.map(r=>`<tr style="${r.void?'opacity:.5;text-decoration:line-through':''}"><td data-l="Fecha">${dmy(r.date)}</td><td data-l="Tienda">${STORES[r.store]}</td><td data-l="Categoría">${esc(r.cat)}</td><td data-l="Detalle">${esc(r.desc)} <span class="mut">${esc(r.method)}</span></td><td class="n" data-l="Valor">${fmt(r.amount)}</td><td class="act">${!r.void&&canVoid(r)?`<button class="b s d" onclick="voidRec('${r.id}')">Anular</button>`:''}</td></tr>`).join('')}</table></div></div>`}
+ <div class="kpi" style="margin-bottom:.8rem;display:inline-block"><small>Gastos de hoy${st?' · '+STORES[st]:''}</small><b>${fmt(recs().filter(r=>r.type==='expense'&&!r.void&&r.date===todayStr()&&(!st||r.store===st)).reduce((a,r)=>a+r.amount,0))}</b></div>${rangeBar()}<div class="card"><p><b>${fmt(list.filter(r=>!r.void).reduce((a,r)=>a+r.amount,0))}</b> en el período <button class="b s wab2" onclick="shareExpList()" aria-label="Compartir gastos por WhatsApp">${WA_ICO} Compartir por WhatsApp</button></p><div class="tw"><table class="rt"><tr><th>Fecha</th><th>Tienda</th><th>Categoría</th><th>Descripción</th><th class="n">Valor</th><th></th></tr>
+ ${list.map(r=>`<tr style="${r.void?'opacity:.5;text-decoration:line-through':''}"><td data-l="Fecha">${dmy(r.date)}</td><td data-l="Tienda">${STORES[r.store]}</td><td data-l="Categoría">${esc(r.cat)}</td><td data-l="Detalle">${esc(r.desc)} <span class="mut">${esc(r.method)}</span></td><td class="n" data-l="Valor">${fmt(r.amount)}</td><td class="act"><button class="wab" onclick="shareExp('${r.id}')" aria-label="Compartir este gasto por WhatsApp" title="Compartir por WhatsApp">${WA_ICO}</button>${!r.void&&canVoid(r)?`<button class="b s d" onclick="voidRec('${r.id}')">Anular</button>`:''}</td></tr>`).join('')}</table></div></div>`}
 function saveExp(){const a=cop($('#e-amt').value);if(a<=0)return toast('Falta el valor');newRec('expense',{store:$('#e-store').value,date:$('#e-date').value,cat:$('#e-cat').value,desc:$('#e-desc').value.trim(),amount:a,method:$('#e-met').value});toast('Gasto guardado');go()}
 
 /* ============ TRASLADOS ============ */
