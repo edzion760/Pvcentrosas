@@ -188,7 +188,7 @@ function stock(){if(_stock)return _stock;const s={};
  const add=(sku,st,q)=>{(s[sku]=s[sku]||{sangil:0,socorro:0})[st]+=q};
  const OS=EXT().stock;for(const k in OS){s[k]={sangil:OS[k].sangil||0,socorro:OS[k].socorro||0}}
  recs().forEach(r=>{if(r.void)return;
-  if(r.type==='sale')r.lines.forEach(l=>add(l.sku,r.store,-l.qty));
+  if(r.type==='sale'){if(!r.hist)r.lines.forEach(l=>add(l.sku,r.store,-l.qty))}
   else if(r.type==='purchase')r.lines.forEach(l=>add(l.sku,r.store,l.qty));
   else if(r.type==='transfer')r.lines.forEach(l=>{add(l.sku,r.from,-l.qty);add(l.sku,r.to,l.qty)});
   else if(r.type==='adjust')add(r.sku,r.store,r.delta)});
@@ -590,7 +590,7 @@ function fmtDiff(d){return Math.abs(d)<1?'<span class="ok">Cuadra ✔</span>':d<
 function saveClose(st,d,exp){const id='CL-'+st+'-'+d;db.records[id]={id,type:'close',store:st,date:d,expected:exp,counted:cop($('#cl-c').value),note:$('#cl-n').value,by:U.name,ts:Date.now()};save();toast('Cierre guardado');go()}
 
 /* ============ REPORTES (propietario) ============ */
-function monthRows(){const out={};const now=todayStr().slice(0,7);EXT().hist.forEach(h=>{(out[h.ym]=out[h.ym]||{sangil:0,socorro:0,hist:{sangil:0,socorro:0},app:{sangil:0,socorro:0}});out[h.ym][h.store]+=h.total;out[h.ym].hist[h.store]+=h.total});
+function monthRows(){const out={};const now=todayStr().slice(0,7);const HS=new Set();recs().forEach(r=>{if(r.hist&&r.type==='sale'&&!r.void)HS.add(ymOf(r.date)+'|'+r.store)});EXT().hist.forEach(h=>{if(HS.has(h.ym+'|'+h.store))return;(out[h.ym]=out[h.ym]||{sangil:0,socorro:0,hist:{sangil:0,socorro:0},app:{sangil:0,socorro:0}});out[h.ym][h.store]+=h.total;out[h.ym].hist[h.store]+=h.total});
  recs().forEach(r=>{if(r.void||(r.type!=='sale'&&r.type!=='daily'))return;const m=ymOf(r.date);const o=out[m]=out[m]||{sangil:0,socorro:0,hist:{sangil:0,socorro:0},app:{sangil:0,socorro:0}};o[r.store]+=r.total;o.app[r.store]+=r.total});
  return Object.entries(out).sort((a,b)=>a[0].localeCompare(b[0]))}
 function vRep(){const st=curStore();const a=agg(S.from,S.to,st);const top={};
@@ -640,14 +640,25 @@ async function doExport(tg){db.lastExportT=db.lastExportT||{};const since=U.role
 function exportBackup(){download(`pvcentro_RESPALDO_${todayStr()}.json`,JSON.stringify({app:'pvcentro',kind:'backup',db}));db.lastBackup=Date.now();save();toast('Copia descargada');go()}
 function importFile(f,mode){if(!f)return;const rd=new FileReader();rd.onload=()=>{let o;try{o=JSON.parse(rd.result)}catch(e){return toast('El archivo no se pudo leer')}
  if(o.app!=='pvcentro')return toast('Este archivo no es de PVCENTRO');
+ if(o.kind==='sales_hist')return importHist(o);
  if(o.kind==='catalog'){db.ext=o.ext;save();modal(`<h3>✔ Catálogo cargado</h3><p>${Object.keys(o.ext.stock).length} productos con existencias${Object.keys(o.ext.costs).length?' y costos':''}.</p><button class="b p" onclick="closeModal();go()">Aceptar</button>`);return}
  if(o.kind==='backup'){if(mode!=='backup')return toast('Ese es un respaldo; usa "Restaurar desde copia"');if(!confirm('Esto REEMPLAZA todos los datos de este equipo por los del respaldo. ¿Continuar?'))return;const keep=U.id;db=o.db;save();saveNow().then(()=>{U=Object.assign({id:keep},db.users[keep]);toast('Respaldo restaurado');go()});return}
  if(mode==='backup')return toast('Ese es un archivo de cierre; usa "Recibir el archivo"');
  let nu=0,up=0;(o.records||[]).forEach(r=>{const e=db.records[r.id];if(!e){db.records[r.id]=r;nu++}else if(r.ts>e.ts){db.records[r.id]=r;up++}});save();
  modal(`<h3>✔ Archivo recibido de ${esc(o.from)}</h3><p>${nu} movimientos nuevos y ${up} actualizados.</p><button class="b p" onclick="closeModal();go()">Aceptar</button>`)};rd.readAsText(f)}
 
+/* ============ VENTAS HISTÓRICAS (actas) ============ */
+function importHist(o){if(U.role!=='owner')return toast('Solo el propietario puede cargar ventas históricas');
+ const inn=o.records||[];if(!inn.length)return toast('El archivo no trae ventas');
+ const dup=recs().filter(r=>r.type==='daily'&&!r.void&&r.store===o.store&&r.date>=o.from&&r.date<=o.to);
+ let anul=0;if(dup.length&&confirm('Ya hay '+dup.length+' resúmenes diarios de '+STORES[o.store]+' entre '+dmy(o.from)+' y '+dmy(o.to)+'.\n\nSi se dejan, esas ventas se contarían dos veces. ¿Anularlos?'))anul=dup.length;
+ const now=Date.now();let nu=0,sk=0,tot=0;inn.forEach(r=>{if(db.records[r.id]){sk++;return}r.ts=now;r.by=U.name;db.records[r.id]=r;nu++;tot+=r.total});
+ if(anul)dup.forEach(d=>{d.void=true;d.voidWhy='Reemplazado por las ventas detalladas de las actas';d.voidBy=U.name;d.ts=now});
+ save();modal(`<h3>✔ Ventas históricas cargadas</h3><p>${nu} ventas de ${STORES[o.store]} por ${fmt(tot)}${sk?` (${sk} ya estaban y no se repitieron)`:''}${anul?`. Se anularon ${anul} resúmenes diarios para no contarlos dos veces`:''}.</p><p class="mut">No se tocó el inventario.</p><button class="b p" onclick="closeModal();S.tab='sales';S.from='${o.from}';S.to='${o.to}';go()">Ver las ventas</button>`)}
+
 /* ============ AJUSTES (propietario) ============ */
 function vSet(){return`<h2>Ajustes</h2>
+ <div class="card"><h3>Cargar ventas históricas (archivo de actas)</h3><p class="mut">Para meter ventas viejas que Edison te pasa en un archivo .json. Quedan como historial en Ventas y Reportes; <b>no cambian el inventario</b>.</p><div class="row"><label>Elegir archivo<input type="file" accept=".json,application/json" onchange="importFile(this.files[0],'sync')"></label></div></div>
  <div class="card"><h3>Cargar ventas diarias de una tienda (resumen)</h3><p class="mut">Para meter las ventas que ya existen en el Excel de Darío (septiembre y octubre) sin digitar factura por factura. Pega una línea por día: <b>fecha ; total ; efectivo (opcional)</b>. Ejemplo: <code>15/09/2026;1250000;800000</code></p>
  <div class="row">${storeSel('b-store','socorro')}</div><textarea id="b-txt" rows="7" style="width:100%" placeholder="15/09/2026;1250000;800000&#10;16/09/2026;980000"></textarea><br><br><button class="b p" onclick="bulkDaily()">Cargar resumen diario</button></div>
  <div class="card"><h3>Parámetros</h3><div class="row"><label>Margen estimado para resúmenes sin detalle<input id="s-m" value="${(db.estMargin*100).toFixed(1)}" style="width:90px"> %</label><button class="b" onclick="db.estMargin=Math.min(.95,Math.max(.05,(Number($('#s-m').value)||51.9)/100));save();toast('Guardado')">Guardar</button></div></div>
