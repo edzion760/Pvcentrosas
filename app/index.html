@@ -235,13 +235,14 @@ async function cloudSync(manual){const c=db&&db.cloud;
   const res=await fetch(c.url,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'sync',token:c.token,since:c.pull||0,records:push})});
   const o=await res.json();if(o.status!=='success')throw new Error(o.message||'error');
   let nu=0,up=0;(o.records||[]).forEach(r=>{const e=db.records[r.id];if(!e){db.records[r.id]=r;nu++}else if(r.ts>e.ts){db.records[r.id]=r;up++}});
-  c.push=t0;c.pull=o.cursor||c.pull||0;c.last=Date.now();c.err='';save(true);
+  c.push=t0;c.pull=o.cursor||c.pull||0;c.last=Date.now();c.err='';c.rej=o.rejected||0;save(true);
   setStat('☁ al día '+new Date().toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'}),'');
-  if(manual)toast(`Nube: ${push.length} enviados, ${nu+up} recibidos`);
+  if(manual)toast(`Nube: ${push.length} enviados, ${nu+up} recibidos`+(o.rejected?`, ${o.rejected} RECHAZADOS`:''));
   if(nu+up>0){if(['home','sales','inv','rep','cash'].includes(S.tab))go();else if(S.tab==='sale')drawGrid()}
-  const st=$('#cl-st');if(st)st.textContent='Última sincronización: ahora mismo';
+  const st=$('#cl-st');if(st)st.textContent='Última sincronización: ahora mismo'+(c.rej?' · rechazados por la nube: '+c.rej:'');
  }catch(e){c.err=String(e.message||e);save(true);setStat('☁ error','v');if(manual)toast('No se pudo sincronizar: '+c.err)}
  finally{S.syncing=false}}
+function resendAll(){const c=db.cloud;if(!c||!c.url)return toast('Primero conecta la nube');c.push=0;save(true);cloudSync(true)}
 function saveCloud(){const u=$('#cl-u').value.trim(),k=$('#cl-t').value.trim();if(!/^https:\/\/script\.google(usercontent)?\.com\//.test(u))return toast('La dirección debe empezar por https://script.google.com/…');if(k.length<16)return toast('La clave parece incompleta');
  db.cloud=Object.assign(db.cloud||{push:0,pull:0},{url:u,token:k});save(true);toast('Guardado');cloudSync(true)}
 function magicLink(){const u=(db.cloud||{}).url;const k=$('#cl-k2').value.trim();if(!u)return toast('Primero guarda la dirección de la nube');if(k.length<16)return toast('Pega la clave de esa persona');
@@ -292,8 +293,9 @@ function vHome(){const d=todayStr();const st=visStores();const P=products(),K=st
  const alerts=[];
  if(!(db.cloud&&db.cloud.url))alerts.push(U.role==='owner'?'<b>Esta app NO está conectada a la nube.</b> Por eso no ves las ventas de Wilmer y Darío. Ve a <b>Sincronizar / Respaldo</b>, pega la dirección de la nube y tu clave, y toca <b>Guardar y sincronizar</b> (o abre tu enlace personal). <button class="b s p" onclick="S.tab=\'sync\';go()">Conectar ahora</button>':'<b>Esta app NO está conectada a la nube.</b> Tus ventas no le llegan a Edison. Pega aquí el enlace personal que te envió Edison y toca Conectar: <input id="cfgp" placeholder="pega el enlace completo" style="width:100%;margin:.4rem 0"><button class="b s p" onclick="pasteCfg()">Conectar</button>')
  if(!db.ext)alerts.push('Falta cargar el <b>catálogo inicial</b> (existencias'+(U.role==='owner'?' y costos':'')+'). Ve a <b>Sincronizar / Respaldo</b> y selecciona el archivo catalogo_*.json que te envió Edison.');
- if(Date.now()-db.lastBackup>7*864e5)alerts.push('Hace más de 7 días no haces copia de seguridad. Ve a <b>Sincronizar / Respaldo</b> y descarga el respaldo.');
- if(U.role!=='owner'&&Date.now()-db.lastExport>864e5)alerts.push('Aún no has enviado el cierre de hoy a Edison. Ve a <b>Sincronizar / Respaldo</b>.');
+ const cloudOk=!!(db.cloud&&db.cloud.url&&db.cloud.last&&Date.now()-db.cloud.last<3*864e5);
+ if(!cloudOk&&Date.now()-db.lastBackup>7*864e5)alerts.push('Hace más de 7 días no haces copia de seguridad. Ve a <b>Sincronizar / Respaldo</b> y descarga el respaldo.');
+ if(!cloudOk&&U.role!=='owner'&&Date.now()-db.lastExport>864e5)alerts.push('Aún no has enviado el cierre de hoy a Edison. Ve a <b>Sincronizar / Respaldo</b>.');
  if(U.role==='owner'){const pc=recs().filter(r=>r.type==='purchase'&&r.pending&&!r.void).length;if(pc)alerts.push(pc+' recepción(es) de mercancía esperan que les pongas el costo (pestaña <b>Compras</b>).')}
  if(low.length)alerts.push(`${low.length} producto(s) con existencias bajo el mínimo.`);
  if(pend.length)alerts.push(`${pend.length} venta(s) a crédito pendientes de cobro por ${fmt(pend.reduce((a,r)=>a+r.total-collected(r),0))}.`);
@@ -613,8 +615,8 @@ function vSync(){const pend=recs().filter(r=>r.ts>db.lastExport).length;const dd
  const cl=db.cloud||{};
  return`<h2>Nube (Google Sheets)</h2><div class="card"><p>Con la nube, lo que se registra en una tienda aparece en la otra en segundos cuando hay internet, y sin internet todo sigue funcionando y se envía después. ${U.role==='owner'?'Tú ves todo; los vendedores solo reciben lo de su tienda y sin costos.':'Solo ves lo de tu tienda.'}</p>
  <div class="row"><label class="full" style="flex:1;min-width:240px">Dirección de la nube (termina en /exec)<input id="cl-u" value="${esc(cl.url||'')}" style="width:100%" placeholder="https://script.google.com/macros/s/…/exec"></label><label class="full">Mi clave<input id="cl-t" style="width:100%" type="password" value="${esc(cl.token||'')}"></label></div>
- <div class="row"><button class="b p" onclick="saveCloud()">Guardar y sincronizar</button><button class="b" onclick="cloudSync(true)">Sincronizar ahora</button></div>
- <p class="mut" id="cl-st">${cl.last?'Última sincronización: '+new Date(cl.last).toLocaleString('es-CO'):'Aún no sincronizada'}${cl.err?' · último error: '+esc(cl.err):''}</p>
+ <div class="row"><button class="b p" onclick="saveCloud()">Guardar y sincronizar</button><button class="b" onclick="cloudSync(true)">Sincronizar ahora</button><button class="b" onclick="resendAll()">Reenviar todo</button></div>
+ <p class="mut" id="cl-st">${cl.last?'Última sincronización: '+new Date(cl.last).toLocaleString('es-CO'):'Aún no sincronizada'}${cl.rej?' · rechazados por la nube: '+cl.rej:''}${cl.err?' · último error: '+esc(cl.err):''}</p>
  ${U.role==='owner'?`<h3 style="margin-top:1rem">Enlace de configuración para un vendedor</h3><p class="mut">Pega la clave de Wilmer o de Darío (pestaña Claves de tu hoja), genera el enlace y envíaselo por WhatsApp: al abrirlo en su celular queda configurado.</p><div class="row"><label style="flex:1">Clave de esa persona<input id="cl-k2" style="width:100%"></label><button class="b" onclick="magicLink()">Generar y copiar enlace</button></div><input id="cl-link" readonly style="width:100%" placeholder="el enlace aparece aquí">`:''}</div>
  <h2>Sincronizar sin la nube (por archivo)</h2><div class="card"><p>Cada tienda trabaja con su propia copia, <b>sin internet</b>. Al cerrar el día, el vendedor envía su archivo por WhatsApp a Edison, y Edison importa los archivos de las dos tiendas. Si Edison cambia precios o crea productos, envía su archivo a los vendedores y ellos lo importan.</p>
  <p class="mut">Último envío: ${dd}${U.role==='owner'?'':` · Movimientos sin enviar: <b>${pend}</b>`}</p>
