@@ -224,6 +224,7 @@ function setStat(txt,cls){const e=$('#cloudst');if(!e)return;e.style.display=txt
 function statNow(){const c=db&&db.cloud;if(!c||!c.url||!U){setStat('');return}if(S.syncing)return;const n=recs().filter(r=>r.ts>(c.push||0)).length;
  if(!navigator.onLine)return setStat('☁ sin conexión'+(n?' · '+n+' por enviar':''),'v');
  if(n>0)return setStat('☁ '+n+' por enviar','v');
+ if(c.rej>0)return setStat('☁ '+c.rej+' sin aceptar por la nube','v');
  setStat(c.last?'☁ al día '+new Date(c.last).toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'}):'☁ toca para sincronizar','')}
 window.addEventListener('online',()=>{if(U){statNow();schedCloud()}});window.addEventListener('offline',()=>{if(U)statNow()});
 async function cloudSync(manual){const c=db&&db.cloud;
@@ -235,8 +236,10 @@ async function cloudSync(manual){const c=db&&db.cloud;
   const res=await fetch(c.url,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'sync',token:c.token,since:c.pull||0,records:push})});
   const o=await res.json();if(o.status!=='success')throw new Error(o.message||'error');
   let nu=0,up=0;(o.records||[]).forEach(r=>{const e=db.records[r.id];if(!e){db.records[r.id]=r;nu++}else if(r.ts>e.ts){db.records[r.id]=r;up++}});
-  c.push=t0;c.pull=o.cursor||c.pull||0;c.last=Date.now();c.err='';c.rej=o.rejected||0;save(true);
-  setStat('☁ al día '+new Date().toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'}),'');
+  c.rej=o.rejected||0;
+  if(c.rej>0){const ts=(o.rejIds||[]).map(id=>(db.records[id]||{}).ts).filter(Boolean);c.push=ts.length?Math.min(t0,Math.min(...ts)-1):(c.push||0)}else c.push=t0;
+  c.pull=o.cursor||c.pull||0;c.last=Date.now();c.err='';save(true);
+  setStat(c.rej>0?'☁ '+c.rej+' sin aceptar por la nube':'☁ al día '+new Date().toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'}),c.rej>0?'v':'');
   if(manual)toast(`Nube: ${push.length} enviados, ${nu+up} recibidos`+(o.rejected?`, ${o.rejected} RECHAZADOS`:''));
   if(nu+up>0){if(['home','sales','inv','rep','cash'].includes(S.tab))go();else if(S.tab==='sale')drawGrid()}
   const st=$('#cl-st');if(st)st.textContent='Última sincronización: ahora mismo'+(c.rej?' · rechazados por la nube: '+c.rej:'');
@@ -271,7 +274,7 @@ function enter(k){closeModal();U=Object.assign({id:k},db.users[k]);try{localStor
  S.tab='home';S.store='all';setTimeout(()=>cloudSync(),600);S.carts={sale:[],buy:[],trans:[],recv:[]};shell()}
 
 /* ============ CASCARÓN ============ */
-const TABS=[['home','Inicio'],['sale','Vender'],['qr','QR pagos'],['sales','Ventas'],['inv','Inventario'],['buy','Compras',1],['recv','Recibir mercancía',2],['exp','Gastos'],['trans','Traslados'],['cash','Caja'],['rep','Reportes',1],['sync','Sincronizar / Respaldo'],['set','Ajustes',1]];
+const TABS=[['home','Inicio'],['sale','Vender'],['quote','Cotizaciones'],['cust','Clientes'],['qr','QR pagos'],['sales','Ventas'],['inv','Inventario'],['buy','Compras',1],['recv','Recibir mercancía',2],['exp','Gastos'],['trans','Traslados'],['cash','Caja'],['rep','Reportes',1],['sync','Sincronizar / Respaldo'],['set','Ajustes',1]];
 function shell(){const vis=TABS.filter(t=>t[2]===1?U.role==='owner':t[2]===2?U.role!=='owner':true);
  $('#app').innerHTML=`<div class="top"><header><b>PVCENTRO</b><span class="tag">${esc(U.name)} · ${U.role==='owner'?'Propietario':STORES[U.store]}</span>
   ${U.role==='owner'?`<select onchange="S.store=this.value;go()" title="Ver tienda"><option value="all">Ambas tiendas</option>${Object.entries(STORES).map(([k,v])=>`<option value="${k}" ${S.store===k?'selected':''}>${v}</option>`).join('')}</select>`:''}
@@ -279,7 +282,7 @@ function shell(){const vis=TABS.filter(t=>t[2]===1?U.role==='owner':t[2]===2?U.r
   <div id="warnstore" class="alert" style="display:none;border-radius:0;margin:0">⚠ Los datos NO se están guardando en este navegador. Abre el archivo con Chrome o Edge y no desde una vista previa.</div>
   <nav>${vis.map(t=>`<button data-t="${t[0]}" class="${S.tab===t[0]?'on':''}" onclick="S.tab='${t[0]}';go()">${t[1]}</button>`).join('')}<button onclick="window.open(CAT_URL,'_blank')">Catálogo ↗</button></nav></div><main id="main"></main>`;go();statNow()}
 function go(){if(!U||!$('#main'))return;document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.t===S.tab));
- const v={home:vHome,sale:vSell,qr:vQR,sales:vSales,inv:vInv,buy:vBuy,recv:vRecv,exp:vExp,trans:vTrans,cash:vCash,rep:vRep,sync:vSync,set:vSet}[S.tab];
+ const v={home:vHome,sale:vSell,quote:vQuote,cust:vCust,qr:vQR,sales:vSales,inv:vInv,buy:vBuy,recv:vRecv,exp:vExp,trans:vTrans,cash:vCash,rep:vRep,sync:vSync,set:vSet}[S.tab];
  $('#main').innerHTML=v();if(!persistOK&&db){const b=$('#warnstore');if(b&&idb===null)b.style.display='block'}window.scrollTo(0,0);const f=$('#main').querySelector('[autofocus]');if(f)f.focus()}
 const storeSel=(id,val)=>U.role==='owner'?`<label>Tienda<select id="${id}">${Object.entries(STORES).map(([k,v])=>`<option value="${k}" ${(val||curStore())===k?'selected':''}>${v}</option>`).join('')}</select></label>`:`<input type="hidden" id="${id}" value="${U.store}">`;
 const dateInp=(id,v)=>`<label>Fecha<input type="date" id="${id}" value="${v||todayStr()}"></label>`;
@@ -299,6 +302,7 @@ function vHome(){const d=todayStr();const st=visStores();const P=products(),K=st
  if(U.role==='owner'){const pc=recs().filter(r=>r.type==='purchase'&&r.pending&&!r.void).length;if(pc)alerts.push(pc+' recepción(es) de mercancía esperan que les pongas el costo (pestaña <b>Compras</b>).')}
  if(low.length)alerts.push(`${low.length} producto(s) con existencias bajo el mínimo.`);
  if(pend.length)alerts.push(`${pend.length} venta(s) a crédito pendientes de cobro por ${fmt(pend.reduce((a,r)=>a+r.total-collected(r),0))}.`);
+ const oq=recs().filter(r=>r.type==='quote'&&!r.void&&r.status==='open'&&inScope(r)).length;if(oq)alerts.push(`Tienes ${oq} cotización(es) abierta(s) por convertir en venta o dar seguimiento (pestaña <b>Cotizaciones</b>).`);
  const last=recs().filter(r=>['sale','daily','expense','purchase','transfer','collect'].includes(r.type)&&!r.void&&inScope(r)).sort((a,b)=>b.ts-a.ts).slice(0,8);
  return`<h2>Hola ${esc(U.name)}</h2>${alerts.map(a=>`<div class="alert">${a}</div>`).join('')}
  <div class="grid" style="margin-bottom:1rem">${cards}${mon}</div>
@@ -354,23 +358,23 @@ function totHTML(kind){const t=lineTotal(kind);if(kind==='trans'||kind==='recv')
 
 /* ============ VENDER ============ */
 function vSell(){S.carts.sale=S.carts.sale||[];S.lim=48;document.body.classList.remove('cartopen');setTimeout(()=>{drawLines('sale');drawGrid()},0);
- return`<h2>Registrar venta</h2><div class="card"><div class="row">${U.role==='owner'?storeSel('f-store').replace('<select id="f-store">','<select id="f-store" onchange="drawGrid()">'):storeSel('f-store')}${dateInp('f-date')}</div></div>
+ return`<h2>${S.qmode?'Nueva cotización':'Registrar venta'}</h2><div class="chips" style="padding-top:0"><button class="${!S.qmode?'on':''}" onclick="setMode(false)">Venta</button><button class="${S.qmode?'on':''}" onclick="setMode(true)">Cotización (sin venta)</button></div>${S.quoteId?`<div class="alert">Estás convirtiendo la cotización <b>${esc((db.records[S.quoteId]||{}).num||'')}</b> en venta. Revisa los datos y toca Guardar venta.</div>`:''}<div class="card"><div class="row">${U.role==='owner'?storeSel('f-store').replace('<select id="f-store">','<select id="f-store" onchange="drawGrid()">'):storeSel('f-store')}${dateInp('f-date')}</div></div>
  <div class="card"><input id="q-sale" placeholder="Buscar producto por nombre o código…" style="width:100%" oninput="S.lim=48;drawGrid()"><div class="chips" id="chips"></div><div id="grid"></div></div>
  <button class="cfab" id="cfab" onclick="cartOpen(true)"></button>
  <div id="cartsheet"><div class="shhead"><button class="bk" onclick="cartOpen(false)" aria-label="Volver">‹</button><b>Carrito</b><button class="b" onclick="clearCart()">Limpiar</button></div>
  <div class="card"><h3>Carrito</h3><div id="lines-sale"></div></div>
- <div class="card"><div class="row">
- <label>Cliente<input id="f-cust" placeholder="Mostrador / nombre" style="min-width:200px"></label>
- <label>Forma de pago<select id="f-method">${METHODS.map(m=>`<option>${m}</option>`).join('')}</select></label>
- <button type="button" class="b s" onclick="qrFull($('#f-store').value)">Mostrar QR de pago</button>
- <label>Descuento $<input id="f-disc" inputmode="numeric" value="0" style="width:110px" oninput="drawTot('sale')"></label>
- <label>No. factura electrónica (Facturatech)<input id="f-fact" placeholder="opcional"></label></div>
- <label style="font-size:.9rem"><input type="checkbox" id="f-ret" onchange="drawTot('sale')"> El cliente practicó retención en la fuente (2,5%)</label></div>
- <div class="card cartbar"><div class="row"><div id="tot-sale"></div><span class="sp" style="flex:1"></span><button class="b" onclick="clearCart()">Limpiar</button><button class="b p" onclick="saveSale()">Guardar venta</button></div></div></div>`}
+ <div class="card"><div id="custbox">${custBox()}</div><div class="row">
+ ${S.qmode?`<label>Vigencia (días)<input id="f-vig" inputmode="numeric" value="8" style="width:80px"></label>`:`<label>Forma de pago<select id="f-method">${METHODS.map(m=>`<option>${m}</option>`).join('')}</select></label>
+ <button type="button" class="b s" onclick="qrFull($('#f-store').value)">Mostrar QR de pago</button>`}
+ <label>Descuento $<input id="f-disc" inputmode="numeric" value="${fnum(S.prefDisc||0)}" style="width:110px" oninput="drawTot('sale')"></label>
+ ${S.qmode?`<label style="flex:1;min-width:200px">Nota para el cliente (opcional)<input id="f-note" placeholder="Ej: incluye instalación, entrega en 3 días" style="width:100%"></label>`:`<label>No. factura electrónica (Facturatech)<input id="f-fact" placeholder="opcional"></label>`}</div>
+ ${S.qmode?'':`<label style="font-size:.9rem"><input type="checkbox" id="f-ret" onchange="drawTot('sale')"> El cliente practicó retención en la fuente (2,5%)</label>`}</div>
+ <div class="card cartbar"><div class="row"><div id="tot-sale"></div><span class="sp" style="flex:1"></span><button class="b" onclick="clearCart()">Limpiar</button>${S.qmode?`<button class="b p" onclick="saveQuote()">Guardar cotización</button>`:`<button class="b p" onclick="saveSale()">Guardar venta</button>`}</div></div></div>`}
+function setMode(q){if(!!S.qmode===!!q)return;S.qmode=!!q;if(q){S.quoteId=''}document.body.classList.remove('cartopen');go()}
 function cartOpen(on){if(on){document.body.classList.add('cartopen');const s=$('#cartsheet');if(s)s.scrollTop=0;try{history.pushState({c:1},'')}catch(e){}}
  else if(document.body.classList.contains('cartopen')){document.body.classList.remove('cartopen');if(history.state&&history.state.c){try{history.back()}catch(e){}}}}
 window.addEventListener('popstate',()=>document.body.classList.remove('cartopen'));
-function clearCart(){if(S.carts.sale.length&&!confirm('¿Vaciar el carrito?'))return;S.carts.sale=[];drawLines('sale');drawGrid();cartOpen(false)}
+function clearCart(){if(S.carts.sale.length&&!confirm('¿Vaciar el carrito?'))return;S.carts.sale=[];S.quoteId='';S.prefDisc=0;drawLines('sale');drawGrid();cartOpen(false)}
 function qtyLine(i,d){const l=S.carts.sale[i];if(!l)return;if(d<0&&l.qty<=1){delLine('sale',i);return}l.qty=Math.round((l.qty+d)*100)/100;drawLines('sale');drawGrid()}
 function drawFab(){const f=$('#cfab');if(!f)return;const c=S.carts.sale||[];const n=c.length;const d=cop((($('#f-disc'))||{}).value);const tt=Math.max(0,lineTotal('sale')-d);
  f.innerHTML=n?`<span class="n">${n}</span><span class="t">Ver carrito</span><span>${fmt(tt)} ›</span>`:`<span class="t">Carrito vacío · toca un producto</span>`}
@@ -379,11 +383,13 @@ function saveSale(){const c=S.carts.sale;if(!c.length)return toast('Agrega al me
  const short=c.filter(l=>l.sku[0]!=='_'&&((K[l.sku]||{})[store]||0)<l.qty);
  if(short.length&&!confirm('Según el inventario no alcanza para:\n'+short.map(l=>'• '+l.name).join('\n')+'\n\n¿Guardar de todos modos? (luego revisa el conteo)'))return;
  const disc=cop($('#f-disc').value);const total=Math.max(0,lineTotal('sale')-disc);
+ const cu=S.cust?db.records[S.cust]:null;
  const ret=$('#f-ret').checked?Math.round(total/IVA*0.025):0;
- const r=newRec('sale',{store,date,num:saleNum(store,date),customer:$('#f-cust').value.trim(),method:$('#f-method').value,disc,total,ret,fact:$('#f-fact').value.trim(),lines:c.map(l=>({sku:l.sku,name:l.name,qty:l.qty,price:l.price,cost:(products()[l.sku]||{}).cost||0}))});
- S.carts.sale=[];showReceipt(r,true)}
+ const r=newRec('sale',{store,date,num:saleNum(store,date),customer:custNameNow(),custId:cu?cu.id:'',quoteId:S.quoteId||'',method:$('#f-method').value,disc,total,ret,fact:$('#f-fact').value.trim(),lines:c.map(l=>({sku:l.sku,name:l.name,qty:l.qty,price:l.price,cost:(products()[l.sku]||{}).cost||0}))});
+ if(S.quoteId){const q=db.records[S.quoteId];if(q){q.status='sold';q.saleId=r.id;touch(q)}}
+ S.carts.sale=[];S.cust=null;S.custName='';S.quoteId='';S.prefDisc=0;showReceipt(r,true)}
 function receiptText(r){return`*PVCENTRO – ${STORES[r.store]}*\nVenta ${r.num} · ${dmy(r.date)}\nCliente: ${r.customer||'Mostrador'}\n`+r.lines.map(l=>`• ${l.name} x${l.qty} = ${fmt(l.qty*l.price)}`).join('\n')+(r.disc?`\nDescuento: -${fmt(r.disc)}`:'')+`\n*TOTAL: ${fmt(r.total)}* (${r.method})`+(r.ret?`\nRetención: ${fmt(r.ret)}`:'')+(r.fact?`\nFactura electrónica: ${r.fact}`:'')+`\nVendedor: ${r.by}`}
-function showReceipt(r,isNew){const nm={sale:'venta',purchase:(r.recv||r.pending)?'recepción':'compra',transfer:'traslado'}[r.type]||'movimiento';docModal(r,isNew?'✔ '+nm[0].toUpperCase()+nm.slice(1)+' guardada':'Soporte de '+nm)}
+function showReceipt(r,isNew){const nm={quote:'cotización',sale:'venta',purchase:(r.recv||r.pending)?'recepción':'compra',transfer:'traslado'}[r.type]||'movimiento';docModal(r,isNew?'✔ '+nm[0].toUpperCase()+nm.slice(1)+' guardada':'Soporte de '+nm)}
 
 /* ============ CATÁLOGO Y QR DE PAGOS ============ */
 const CAT_URL='https://edzion760.github.io/Pvcentrosas/catalogo.html';
@@ -423,6 +429,11 @@ function tkSpec(r){const s=r.store||r.from||'sangil';const o={store:s,kind:'',wh
   o.items=r.lines.map(l=>[l.name+' x '+fnum(l.qty),rc?'':fmt(l.qty*l.cost)]);
   if(!rc){o.big=['Total compra:',fmt(r.total)];o.pay=[['Pago',String(r.method||'')]]}
   if(r.supplier)o.info.push((rc?'Origen: ':'Proveedor: ')+r.supplier);if(r.fact)o.info.push((rc?'Remisión / guía: ':'Factura: ')+r.fact)}
+ else if(r.type==='quote'){o.kind='COTIZACIÓN';o.who='Asesor: '+(r.by||'');o.n='No. '+(r.num||'');o.foot='Gracias por cotizar con nosotros';
+  o.items=r.lines.map(l=>[l.name+' x '+fnum(l.qty),fmt(l.qty*l.price)]);
+  if(r.disc){o.tot.push(['Subtotal:',fmt(r.lines.reduce((a,l)=>a+l.qty*l.price,0))]);o.tot.push(['Descuento:','-'+fmt(r.disc)])}
+  o.big=['Total cotizado:',fmt(r.total)];o.pay=[['Válida hasta',dmy(r.valid)]];
+  o.info=['Cliente: '+(r.customer||'—')];if(r.phone)o.info.push('Tel: '+r.phone);if(r.note)o.info.push(r.note);o.info.push('Precios y existencias sujetos a cambio. Esto no es una factura.')}
  else if(r.type==='transfer'){o.kind='TRASLADO ENTRE TIENDAS';o.who='Registró: '+(r.by||'');
   o.items=r.lines.map(l=>[l.name+' x '+fnum(l.qty),'']);o.info=['Sale de: '+STORES[r.from],'Llega a: '+STORES[r.to]];if(r.note)o.info.push(r.note)}
  return o}
@@ -456,17 +467,82 @@ async function tkMake(r){const sp=tkSpec(r),B=BIZ[sp.store]||BIZ.sangil;
 let TK=null;
 function docText(r){if(r.type==='sale')return receiptText(r);const s=STORES[r.store||r.from];
  if(r.type==='purchase'){const rc=!!(r.recv||r.pending);return`*PVCENTRO – ${s}*\n${rc?'Recepción de mercancía':'Compra de mercancía'} · ${dmy(r.date)}\n${r.supplier?(rc?'Origen: ':'Proveedor: ')+r.supplier+'\n':''}`+r.lines.map(l=>`• ${l.name} x${l.qty}${rc?'':' = '+fmt(l.qty*l.cost)}`).join('\n')+(rc?'':`\n*TOTAL: ${fmt(r.total)}* (${r.method})`)+`\n${rc?'Recibió':'Registró'}: ${r.by}`}
+ if(r.type==='quote')return`*PVCENTRO – ${s}*\nCotización ${r.num} · ${dmy(r.date)}\nCliente: ${r.customer||'—'}\n`+r.lines.map(l=>`• ${l.name} x${l.qty} = ${fmt(l.qty*l.price)}`).join('\n')+(r.disc?`\nDescuento: -${fmt(r.disc)}`:'')+`\n*TOTAL: ${fmt(r.total)}*\nVálida hasta ${dmy(r.valid)}`+(r.note?`\n${r.note}`:'')+`\nPrecios y existencias sujetos a cambio.\nAsesor: ${r.by}`
  return`*PVCENTRO*\nTraslado ${STORES[r.from]} → ${STORES[r.to]} · ${dmy(r.date)}\n`+r.lines.map(l=>`• ${l.name} x${l.qty}`).join('\n')+`\nRegistró: ${r.by}`}
 async function docModal(r,msg){modal(`<h3>${msg}</h3><p class="mut">Preparando el soporte…</p>`);let url='';
  try{TK=await tkMake(r);url=TK.toDataURL('image/png')}catch(e){TK=null}
  modal(`<h3>${msg}</h3>${url?`<img src="${url}" alt="Soporte" style="width:100%;max-width:340px;display:block;margin:0 auto .8rem;border:1px solid var(--line);border-radius:6px">`:`<pre class="rc">${esc(docText(r))}</pre>`}
- <div class="row">${url?`<button class="b p" onclick="shareTicket('${r.id}')">Compartir imagen</button>`:''}<button class="b" onclick="copyText(docText(db.records['${r.id}']))">Copiar texto</button><button class="b" onclick="closeModal();go()">Cerrar</button></div>
+ <div class="row">${url?`<button class="b p" onclick="shareTicket('${r.id}')">Compartir imagen</button>`:''}<button class="b" onclick="copyText(docText(db.records['${r.id}']))">Copiar texto</button>${r.type==='quote'&&r.phone?`<button class="b" onclick="waTo('${esc(r.phone)}',docText(db.records['${r.id}']))">WhatsApp al cliente</button>`:''}${r.type==='quote'&&r.status==='open'&&!r.void?`<button class="b" onclick="closeModal();quoteToSale('${r.id}')">Convertir en venta</button>`:''}<button class="b" onclick="closeModal();go()">Cerrar</button></div>
  <p class="mut" style="margin-top:.5rem">Envía la imagen al grupo de WhatsApp como soporte.</p>`)}
-async function shareTicket(id){if(!TK)return;const r=db.records[id];const nm='Soporte_'+String(r.num||r.id).replace(/[^A-Za-z0-9_-]/g,'');
+async function shareTicket(id){if(!TK)return;const r=db.records[id];const nm=(r.type==='quote'?'Cotizacion_':'Soporte_')+String(r.num||r.id).replace(/[^A-Za-z0-9_-]/g,'');
  const blob=await new Promise(res=>TK.toBlob(res,'image/png'));const f=new File([blob],nm+'.png',{type:'image/png'});
  if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f],title:'PVCENTRO'});return}catch(e){if(e&&e.name==='AbortError')return}}
  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=nm+'.png';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1500);toast('Imagen descargada')}
 
+
+/* ============ CLIENTES Y COTIZACIONES ============ */
+const addDays=(d,n)=>{const x=new Date(d+'T12:00:00');x.setDate(x.getDate()+n);return x.getFullYear()+'-'+pad(x.getMonth()+1)+'-'+pad(x.getDate())};
+const quoteNum=(store,date)=>{const n=recs().filter(r=>r.type==='quote'&&r.store===store&&r.date===date).length+1;return 'CT-'+(store==='sangil'?'SG':'SO')+'-'+date.slice(2,4)+date.slice(5,7)+date.slice(8,10)+'-'+pad(n)};
+const custName=c=>c?(c.name||c.phone||c.doc||c.email||'Cliente sin nombre'):'';
+const custNameNow=()=>{const c=S.cust?db.records[S.cust]:null;if(c)return custName(c);return(($('#f-cust')||{}).value||S.custName||'').trim()};
+function custBox(){const c=S.cust?db.records[S.cust]:null;
+ if(c&&!c.void)return`<div class="row"><div style="flex:1;min-width:200px"><span class="mut">Cliente</span><br><b>${esc(custName(c))}</b>${c.phone&&c.name?` · ${esc(c.phone)}`:''}</div><button type="button" class="b s" onclick="pickCust()">Cambiar</button><button type="button" class="b s" onclick="S.cust=null;S.custName='';$('#custbox').innerHTML=custBox()">Quitar</button></div>`;
+ return`<div class="row"><label style="flex:1;min-width:200px">Cliente<input id="f-cust" placeholder="Mostrador / nombre" value="${esc(S.custName||'')}" oninput="S.custName=this.value" style="width:100%"></label><button type="button" class="b s" onclick="pickCust()">Elegir o crear cliente</button></div>`}
+function custScope(){const st=U.role==='owner'?(S.cuStore||null):U.store;return recs().filter(r=>r.type==='customer'&&!r.void&&(!st||r.store===st))}
+function pickCust(){const st=U.role==='owner'?(($('#f-store')||{}).value||'sangil'):U.store;S.pickStore=st;
+ modal(`<h3>Elegir cliente</h3><input id="pc-q" placeholder="Buscar por nombre, teléfono o cédula…" style="width:100%" oninput="drawPick()"><div id="pc-list" style="max-height:46vh;overflow:auto;margin:.6rem 0"></div><div class="row"><button class="b p" onclick="closeModal();custForm('','pick')">＋ Cliente nuevo</button><button class="b" onclick="closeModal()">Cancelar</button></div>`);drawPick();setTimeout(()=>{const e=$('#pc-q');if(e)e.focus()},50)}
+function custMatch(c,q){q=q.toLowerCase().trim();if(!q)return true;return[c.name,c.phone,c.doc,c.email].some(x=>String(x||'').toLowerCase().includes(q))}
+function drawPick(){const q=(($('#pc-q')||{}).value||'');const st=S.pickStore;const l=recs().filter(r=>r.type==='customer'&&!r.void&&r.store===st&&custMatch(r,q)).sort((a,b)=>custName(a).localeCompare(custName(b))).slice(0,40);
+ $('#pc-list').innerHTML=l.length?l.map(c=>`<div class="card" style="margin:.3rem 0;padding:.6rem .8rem;cursor:pointer" onclick="setCust('${c.id}')"><b>${esc(custName(c))}</b><br><span class="mut">${esc([c.phone,c.doc].filter(Boolean).join(' · '))}</span></div>`).join(''):'<p class="mut">No hay clientes con ese dato. Toca “Cliente nuevo”.</p>'}
+function setCust(id){S.cust=id;S.custName='';closeModal();const b=$('#custbox');if(b)b.innerHTML=custBox()}
+function custForm(id,ctx){const c=id?db.records[id]:{};const o=U.role==='owner';
+ modal(`<h3>${id?'Editar cliente':'Cliente nuevo'}</h3><p class="mut">Ningún dato es obligatorio: pide solo lo que el cliente quiera dar. Basta con llenar uno.</p>
+ <div class="row"><label style="flex:1;min-width:220px">Nombre<input id="cu-name" value="${esc(c.name||'')}" style="width:100%" autocomplete="off"></label><label>Teléfono / WhatsApp<input id="cu-phone" inputmode="tel" value="${esc(c.phone||'')}" autocomplete="off"></label></div>
+ <div class="row"><label>Cédula o NIT<input id="cu-doc" inputmode="numeric" value="${esc(c.doc||'')}" autocomplete="off"></label><label style="flex:1;min-width:220px">Correo electrónico<input id="cu-mail" type="email" value="${esc(c.email||'')}" style="width:100%" autocomplete="off"></label></div>
+ <div class="row"><label style="flex:1;min-width:220px">Dirección<input id="cu-addr" value="${esc(c.addr||'')}" style="width:100%" autocomplete="off"></label>${o?`<label>Tienda<select id="cu-store">${Object.entries(STORES).map(([k,v])=>`<option value="${k}" ${(c.store||S.pickStore||(S.store!=='all'&&S.store)||'sangil')===k?'selected':''}>${v}</option>`).join('')}</select></label>`:''}</div>
+ <label style="font-size:.9rem"><input type="checkbox" id="cu-auth" ${c.auth?'checked':''}> El cliente autorizó guardar sus datos (Ley 1581 de 2012)</label>
+ <p class="mut" style="font-size:.8rem">Úsalos solo para atenderlo y hacerle seguimiento. No los compartas con otras personas.</p>
+ <button class="b p" onclick="saveCust('${id||''}','${ctx||''}')">Guardar</button> <button class="b" onclick="closeModal()">Cancelar</button>`)}
+function saveCust(id,ctx){const v=k=>($('#'+k).value||'').trim();const d={name:v('cu-name'),phone:v('cu-phone').replace(/[^\d+ ]/g,''),doc:v('cu-doc'),email:v('cu-mail'),addr:v('cu-addr'),auth:$('#cu-auth').checked};
+ if(!d.name&&!d.phone&&!d.doc&&!d.email&&!d.addr)return toast('Escribe al menos un dato del cliente');
+ if(d.email&&!/^\S+@\S+\.\S+$/.test(d.email))return toast('El correo no parece válido');
+ const store=U.role==='owner'?$('#cu-store').value:U.store;
+ const dup=recs().find(r=>r.type==='customer'&&!r.void&&r.id!==id&&r.store===store&&((d.phone&&r.phone&&r.phone.replace(/\D/g,'')===d.phone.replace(/\D/g,''))||(d.doc&&r.doc&&r.doc===d.doc)));
+ if(dup&&!id){if(confirm('Ya existe el cliente «'+custName(dup)+'» con ese teléfono o cédula.\n\n¿Usar ese cliente en lugar de crear otro?')){if(ctx==='pick'){setCust(dup.id)}else{closeModal();go()}return}}
+ let r;if(id){r=db.records[id];Object.assign(r,d);if(U.role==='owner')r.store=store;touch(r)}else{r=newRec('customer',Object.assign({store,date:todayStr()},d))}
+ closeModal();toast('Cliente guardado');
+ if(ctx==='pick'){setCust(r.id)}else if(ctx==='quote'){S.cust=r.id;S.custName='';S.qmode=true;S.tab='sale';go()}else go()}
+function waTo(phone,text){let n=String(phone||'').replace(/\D/g,'');if(n.length===10&&n[0]==='3')n='57'+n;window.open('https://wa.me/'+n+(text?'?text='+encodeURIComponent(text):''),'_blank')}
+function custStats(id){const sales=recs().filter(r=>r.type==='sale'&&!r.void&&r.custId===id);const qs=recs().filter(r=>r.type==='quote'&&!r.void&&r.custId===id);return{ns:sales.length,tot:sales.reduce((a,r)=>a+r.total,0),nq:qs.length,open:qs.filter(r=>r.status==='open').length}}
+function vCust(){const q=S.cq||'';const o=U.role==='owner';const l=custScope().filter(c=>custMatch(c,q)).sort((a,b)=>custName(a).localeCompare(custName(b)));
+ return`<h2>Clientes</h2><div class="card"><div class="row"><input id="cq" placeholder="Buscar por nombre, teléfono, cédula o correo…" value="${esc(q)}" oninput="S.cq=this.value;drawCust()" style="flex:1;min-width:220px">${o?`<select onchange="S.cuStore=this.value;go()"><option value="">Ambas tiendas</option>${Object.entries(STORES).map(([k,v])=>`<option value="${k}" ${S.cuStore===k?'selected':''}>${v}</option>`).join('')}</select>`:''}<button class="b p" onclick="custForm('','')">＋ Cliente nuevo</button>${o?`<button class="b" onclick="exportCust()">Exportar (Excel)</button>`:''}</div><p class="mut" style="margin:.4rem 0 0">${l.length} cliente(s). Cada tienda ve solo sus clientes${o?'; tú los ves todos':''}.</p></div><div id="custlist">${custRows(l)}</div>`}
+function drawCust(){const q=S.cq||'';const l=custScope().filter(c=>custMatch(c,q)).sort((a,b)=>custName(a).localeCompare(custName(b)));const e=$('#custlist');if(e)e.innerHTML=custRows(l)}
+function custRows(l){if(!l.length)return'<div class="card"><p class="mut">Aún no hay clientes. Toca “＋ Cliente nuevo” o créalos al cotizar.</p></div>';
+ return l.slice(0,120).map(c=>{const st=custStats(c.id);return`<div class="card"><div class="row"><div style="flex:1;min-width:220px"><b>${esc(custName(c))}</b>${U.role==='owner'?` <span class="tag">${STORES[c.store]}</span>`:''}<br><span class="mut">${esc([c.phone,c.doc?'CC/NIT '+c.doc:'',c.email,c.addr].filter(Boolean).join(' · '))}</span><br><span class="mut" style="font-size:.85rem">${st.ns} venta(s)${st.ns?' · '+fmt(st.tot):''} · ${st.nq} cotización(es)${st.open?' ('+st.open+' abierta(s))':''}</span></div>
+ <div class="act" style="display:flex;gap:.3rem;flex-wrap:wrap"><button class="b s p" onclick="S.cust='${c.id}';S.custName='';S.qmode=true;S.quoteId='';S.tab='sale';go()">Cotizar</button><button class="b s" onclick="S.cust='${c.id}';S.custName='';S.qmode=false;S.quoteId='';S.tab='sale';go()">Vender</button>${c.phone?`<button class="b s" onclick="waTo('${esc(c.phone)}')">WhatsApp</button>`:''}<button class="b s" onclick="custForm('${c.id}','')">Editar</button>${U.role==='owner'?`<button class="b s d" onclick="voidCust('${c.id}')">Borrar</button>`:''}</div></div></div>`}).join('')+(l.length>120?'<p class="mut">Mostrando 120. Usa el buscador.</p>':'')}
+function voidCust(id){if(!confirm('¿Borrar este cliente? Sus ventas y cotizaciones anteriores se conservan.'))return;const r=db.records[id];r.void=true;r.voidBy=U.name;touch(r);go()}
+function exportCust(){const l=custScope().sort((a,b)=>custName(a).localeCompare(custName(b)));xls('clientes_'+todayStr(),['Tienda','Nombre','Teléfono','Cédula/NIT','Correo','Dirección','Autorizó datos','Creado por'],l.map(c=>[STORES[c.store],c.name||'',c.phone||'',c.doc||'',c.email||'',c.addr||'',c.auth?'Sí':'No',c.by||'']))}
+
+function qStatus(r){if(r.void)return'<span class="tag v">Anulada</span>';if(r.status==='sold')return'<span class="tag">Vendida</span>';if(r.valid&&r.valid<todayStr())return'<span class="tag v">Vencida · '+dmy(r.valid)+'</span>';return'<span class="tag">Abierta · hasta '+dmy(r.valid)+'</span>'}
+function vQuote(){const f=S.qf||'open';const st=curStore();
+ let l=recs().filter(r=>r.type==='quote'&&inScope(r)&&(!st||r.store===st));
+ if(f==='open')l=l.filter(r=>!r.void&&r.status==='open');else if(f==='sold')l=l.filter(r=>!r.void&&r.status==='sold');
+ l.sort((a,b)=>b.ts-a.ts);
+ return`<h2>Cotizaciones</h2><div class="card"><div class="row"><div class="chips" style="padding:0">${[['open','Abiertas'],['sold','Vendidas'],['all','Todas']].map(x=>`<button class="${f===x[0]?'on':''}" onclick="S.qf='${x[0]}';go()">${x[1]}</button>`).join('')}</div><span class="sp" style="flex:1"></span><button class="b p" onclick="S.qmode=true;S.quoteId='';S.tab='sale';go()">＋ Nueva cotización</button></div><p class="mut" style="margin:.4rem 0 0">Una cotización <b>no descuenta inventario ni cuenta como venta</b> hasta que la conviertas en venta.</p></div>
+ ${l.length?l.map(r=>`<div class="card" style="${r.void?'opacity:.55':''}"><div class="row"><div style="flex:1;min-width:220px"><b>${esc(r.num)}</b> · ${dmy(r.date)}${U.role==='owner'?` <span class="tag">${STORES[r.store]}</span>`:''} ${qStatus(r)}<br>${esc(r.customer||'Sin nombre')}${r.phone&&r.phone!==r.customer?' · '+esc(r.phone):''}<br><span class="mut" style="font-size:.85rem">${r.lines.length} producto(s) · ${esc(r.by||'')}</span></div><div class="n"><b style="font-size:1.15rem">${fmt(r.total)}</b></div>
+ <div class="act" style="display:flex;gap:.3rem;flex-wrap:wrap"><button class="b s" onclick="showReceipt(db.records['${r.id}'])">Ver / enviar</button>${!r.void&&r.status==='open'?`<button class="b s p" onclick="quoteToSale('${r.id}')">Convertir en venta</button>`:''}${!r.void&&r.status==='open'&&(U.role==='owner'||r.store===U.store)?`<button class="b s d" onclick="voidRec('${r.id}')">Anular</button>`:''}</div></div></div>`).join(''):'<div class="card"><p class="mut">No hay cotizaciones en esta lista.</p></div>'}`}
+function saveQuote(){const c=S.carts.sale;if(!c.length)return toast('Agrega al menos un producto');
+ const store=$('#f-store').value,date=$('#f-date').value;const disc=cop($('#f-disc').value);const total=Math.max(0,lineTotal('sale')-disc);
+ const cu=S.cust?db.records[S.cust]:null;const vig=Math.max(1,parseInt(($('#f-vig')||{}).value)||8);
+ const r=newRec('quote',{store,date,num:quoteNum(store,date),custId:cu?cu.id:'',customer:custNameNow(),phone:cu?(cu.phone||''):'',disc,total,valid:addDays(date,vig),note:(($('#f-note')||{}).value||'').trim(),status:'open',lines:c.map(l=>({sku:l.sku,name:l.name,qty:l.qty,price:l.price}))});
+ S.carts.sale=[];S.cust=null;S.custName='';S.prefDisc=0;showReceipt(r,true)}
+function quoteToSale(id){const q=db.records[id];if(!q||q.void||q.status!=='open')return toast('Esa cotización ya no está abierta');const P=products();
+ const now=q.lines.reduce((a,l)=>a+l.qty*((l.sku[0]!=='_'&&P[l.sku])?P[l.sku].price:l.price),0)-(q.disc||0);const same=Math.abs(Math.max(0,now)-q.total)<1;
+ modal(`<h3>Convertir ${esc(q.num)} en venta</h3><p>Cliente: <b>${esc(q.customer||'sin nombre')}</b></p><p>Total cotizado: <b>${fmt(q.total)}</b>${q.valid<todayStr()?` <span class="tag v">vencida el ${dmy(q.valid)}</span>`:''}<br>Con los precios de hoy: <b>${fmt(Math.max(0,now))}</b>${same?' <span class="mut">(no han cambiado)</span>':''}</p><p class="mut">¿Qué precios usamos en la venta?</p>
+ <button class="b p" style="width:100%;margin:.2rem 0" onclick="loadQuote('${id}',true)">Mantener los precios de la cotización</button><button class="b" style="width:100%;margin:.2rem 0" onclick="loadQuote('${id}',false)">Usar los precios de hoy</button><button class="b" style="width:100%;margin:.2rem 0" onclick="closeModal()">Cancelar</button>`)}
+function loadQuote(id,keep){const q=db.records[id];const P=products();
+ S.carts.sale=q.lines.map(l=>({sku:l.sku,name:l.name,qty:l.qty,price:(keep||l.sku[0]==='_'||!P[l.sku])?l.price:P[l.sku].price,cost:(P[l.sku]||{}).cost||0}));
+ S.cust=(q.custId&&db.records[q.custId]&&!db.records[q.custId].void)?q.custId:null;S.custName=S.cust?'':(q.customer||'');S.quoteId=id;S.qmode=false;S.prefDisc=q.disc||0;S.tab='sale';closeModal();go();setTimeout(()=>cartOpen(true),60)}
 
 /* ============ LISTA DE VENTAS ============ */
 function rangeBar(extra){return`<div class="row"><label>Desde<input type="date" value="${S.from}" onchange="S.from=this.value;go()"></label><label>Hasta<input type="date" value="${S.to}" onchange="S.to=this.value;go()"></label>
@@ -478,7 +554,7 @@ function vSales(){const st=curStore();const list=recs().filter(r=>(r.type==='sal
  ${list.map(r=>`<tr style="${r.void?'opacity:.5;text-decoration:line-through':''}"><td data-l="Fecha">${dmy(r.date)}</td><td data-l="No.">${esc(r.num||'Resumen')}</td><td class="hide-s" data-l="Tienda">${STORES[r.store]}</td><td data-l="Cliente">${esc(r.customer||'')}</td><td data-l="Pago">${esc(r.method||'')}${r.type==='sale'&&r.method==='Crédito (fiado)'&&!r.void?(r.total-collected(r)>0.5?` <span class="tag v">debe ${fmt(r.total-collected(r))}</span>`:' <span class="tag">cobrado</span>'):''}</td><td class="n" data-l="Total">${fmt(r.total)}</td><td class="hide-s" data-l="Vendedor">${esc(r.by)}</td>
  <td class="n act">${r.type==='sale'?`<button class="b s" onclick="showReceipt(db.records['${r.id}'])">Ver</button> `:''}${!r.void&&r.type==='sale'&&r.method==='Crédito (fiado)'&&r.total-collected(r)>0.5?`<button class="b s" onclick="cobro('${r.id}')">Cobrar</button> `:''}${!r.void&&canVoid(r)?`<button class="b s d" onclick="voidRec('${r.id}')">Anular</button>`:''}</td></tr>`).join('')}</table></div></div>`}
 function canVoid(r){return U.role==='owner'||(r.store===U.store&&r.date===todayStr())}
-function voidRec(id){const why=prompt('Motivo de la anulación (quedará registrado):');if(!why)return;const r=db.records[id];r.void=true;r.voidWhy=why;r.voidBy=U.name;touch(r);go()}
+function voidRec(id){const why=prompt('Motivo de la anulación (quedará registrado):');if(!why)return;const r=db.records[id];r.void=true;r.voidWhy=why;r.voidBy=U.name;if(r.type==='quote')r.status='void';if(r.type==='sale'&&r.quoteId){const q=db.records[r.quoteId];if(q&&q.status==='sold'){q.status='open';q.saleId='';touch(q)}}touch(r);go()}
 function cobro(id){const s=db.records[id];const deb=s.total-collected(s);modal(`<h3>Cobrar a ${esc(s.customer||'cliente')}</h3><p>Saldo: <b>${fmt(deb)}</b></p><div class="row"><label>Valor recibido<input id="c-amt" inputmode="numeric" value="${fnum(deb)}"></label><label>Medio<select id="c-met"><option>Efectivo</option><option>Transferencia</option><option>Tarjeta</option></select></label></div><button class="b p" onclick="saveCobro('${id}')">Registrar cobro</button> <button class="b" onclick="closeModal()">Cancelar</button>`)}
 function saveCobro(id){const s=db.records[id];const a=cop($('#c-amt').value);if(a<=0)return toast('Valor inválido');newRec('collect',{store:s.store,date:todayStr(),saleId:id,amount:a,method:$('#c-met').value});closeModal();go()}
 function exportSales(){const st=curStore();const rows=[];recs().filter(r=>(r.type==='sale'||r.type==='daily')&&!r.void&&r.date>=S.from&&r.date<=S.to&&(!st||r.store===st)).sort((a,b)=>a.date.localeCompare(b.date)).forEach(r=>{
