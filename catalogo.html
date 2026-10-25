@@ -4,25 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Catálogo PVCENTRO · Cielo rasos PVC, perfilería y construcción liviana</title>
-<meta name="description" content="Catálogo de productos de PVCENTRO en San Gil y Socorro, Santander: láminas PVC y WPC para cielo raso, cornisas, perfilería, herramientas y más. Pide por WhatsApp.">
+<meta name="description" content="Catálogo de productos de PVCENTRO en San Gil y Socorro, Santander: láminas PVC y WPC para cielo raso, cornisas, perfilería, herramientas y más. Pide por WhatsApp. Calculadora de materiales para cielo raso PVC, drywall y techos.">
 <meta name="theme-color" content="#1e3a8a">
 <meta property="og:title" content="Catálogo PVCENTRO">
 <meta property="og:description" content="Láminas PVC y WPC, cornisas, perfilería y construcción liviana. San Gil y Socorro.">
 <meta property="og:image" content="https://edzion760.github.io/Pvcentrosas/logo.jpg">
-<link rel="shortcut icon" href="favicon.ico">
-<link rel="icon" type="image/png" href="icono-catalogo-512.png">
-<link rel="apple-touch-icon" href="icono-catalogo-180.png">
-<link rel="manifest" href="catalogo.webmanifest">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Catálogo">
+<link rel="icon" href="favicon.ico">
 <style>
 :root{--bg:#f4f6fb;--card:#fff;--ink:#17202e;--mut:#5b6679;--line:#e2e7f0;--pri:#1e3a8a;--pri2:#e8eeff;--wa:#12a150;--wa2:#0e8a43}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;overflow-x:hidden}
 body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
 header{background:var(--pri);color:#fff;padding:.7rem 1rem;display:flex;align-items:center;gap:.8rem}
-header img{width:48px;height:48px;border-radius:10px;object-fit:contain;background:#0a0a0a}
+header img{width:44px;height:44px;border-radius:10px;object-fit:cover;background:#fff}
 header .t{flex:1;min-width:0}
 header b{display:block;font-size:1.1rem;letter-spacing:.3px}
 header small{opacity:.85;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -64,11 +58,74 @@ footer a{color:var(--pri)}
 .x{float:right;border:0;background:var(--pri2);color:var(--ink);width:40px;height:40px;border-radius:99px;font-size:1.2rem;cursor:pointer}
 .fab{position:fixed;right:1rem;bottom:1rem;z-index:10;box-shadow:0 4px 14px rgba(0,0,0,.25);padding:.8rem 1.1rem;border-radius:99px}
 #toast{position:fixed;left:50%;bottom:5rem;transform:translateX(-50%);background:#222;color:#fff;padding:.6rem 1rem;border-radius:10px;z-index:50;display:none}
+
+.cban{display:flex;align-items:center;gap:.8rem;background:linear-gradient(135deg,#1e3a8a,#2f55c9);color:#fff;border-radius:14px;padding:.85rem 1rem;margin:0 0 1rem;cursor:pointer;border:0;width:100%;font:inherit;text-align:left}
+.cban .ic{font-size:1.9rem;line-height:1}
+.cban b{display:block;font-size:1.02rem}
+.cban small{opacity:.9;display:block}
+.cban .go{margin-left:auto;background:#fff;color:var(--pri);border-radius:99px;padding:.45rem .9rem;font-weight:800;white-space:nowrap}
+#calc{position:fixed;inset:0;z-index:30;background:var(--bg);overflow:auto;display:none;-webkit-overflow-scrolling:touch}
+#calc.open{display:block}
+.ci{max-width:760px;margin:0 auto;padding:0 1rem 7rem}
+.chd{position:sticky;top:0;z-index:2;background:var(--pri);color:#fff;margin:0 -1rem;padding:.7rem 1rem;display:flex;align-items:center;gap:.6rem}
+.chd b{flex:1;font-size:1.05rem}
+.chd .x{background:rgba(255,255,255,.18);color:#fff;float:none}
+.ctabs{display:flex;gap:.45rem;overflow-x:auto;padding:.8rem 0 .3rem}
+.ctabs button{flex:none;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:12px;padding:.55rem .85rem;font:inherit;cursor:pointer;text-align:left;line-height:1.2}
+.ctabs button.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.ctabs small{display:block;opacity:.75;font-size:.75rem}
+.cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:.9rem;margin:.7rem 0}
+.cc h3{margin:0 0 .5rem;font-size:1rem}
+.cc p{margin:.3rem 0;color:var(--mut);font-size:.88rem}
+.fr{display:grid;grid-template-columns:1fr 1fr auto;gap:.5rem;align-items:end;margin:.4rem 0}
+.fr label,.cf label{display:block;font-size:.8rem;color:var(--mut);margin-bottom:.15rem}
+.cc input,.cc select{width:100%;font:inherit;font-size:16px;padding:.6rem .7rem;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+.cc input:focus,.cc select:focus{outline:2px solid var(--pri);outline-offset:-1px}
+.cf{margin:.6rem 0}
+.cf.two{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.rm{border:1px solid var(--line);background:#fff;border-radius:10px;width:42px;height:42px;font-size:1.1rem;cursor:pointer;color:#a33}
+.add{border:1px dashed var(--pri);background:var(--pri2);color:var(--pri);border-radius:10px;padding:.55rem .9rem;font:inherit;font-weight:700;cursor:pointer;margin-top:.3rem}
+.chk{display:flex;gap:.55rem;align-items:flex-start;font-size:.92rem;margin:.5rem 0}
+.chk input{width:20px;height:20px;margin-top:.1rem;flex:none}
+.rl{display:flex;gap:.6rem;padding:.55rem 0;border-bottom:1px solid var(--line)}
+.rl:last-child{border:0}
+.rl .a{flex:1;min-width:0}
+.rl .a b{display:block;font-size:.93rem;font-weight:600}
+.rl .a span{font-size:.8rem;color:var(--mut)}
+.rl .s{font-weight:800;color:var(--pri);white-space:nowrap;text-align:right}
+.rl .s i{display:block;font-style:normal;font-weight:400;color:var(--mut);font-size:.78rem}
+.tot{display:flex;justify-content:space-between;align-items:baseline;background:var(--pri2);border-radius:12px;padding:.8rem 1rem;margin-top:.6rem}
+.tot b{font-size:1.5rem;color:var(--pri)}
+.warn{background:#fff7e6;border:1px solid #f1d28a;color:#6b4a00;border-radius:10px;padding:.55rem .75rem;margin:.5rem 0;font-size:.88rem}
+.note{font-size:.8rem;color:var(--mut);margin-top:.6rem}
+.cact{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem}
+.cact .wa{flex:1;min-width:200px;padding:.8rem}
+.cfab{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding:.6rem 1rem;display:none;z-index:31}
+@media(max-width:420px){.fr{grid-template-columns:1fr 1fr 42px}}
+.bigin{font-size:1.7rem!important;font-weight:800;text-align:center}
+.tls{display:grid;gap:.5rem}
+.tl{display:flex;gap:.7rem;align-items:center;text-align:left;border:2px solid var(--line);background:#fff;border-radius:12px;padding:.8rem;font:inherit;cursor:pointer;color:var(--ink)}
+.tl.on{border-color:var(--pri);background:var(--pri2)}
+.tl .ic2{font-size:1.7rem}
+.tl b{display:block}.tl small{color:var(--mut)}
+.swg{display:grid;grid-template-columns:repeat(auto-fill,minmax(98px,1fr));gap:.5rem;max-height:48vh;overflow:auto;padding:3px}
+.sw{border:2px solid var(--line);background:#fff;border-radius:10px;padding:0;overflow:hidden;cursor:pointer;font:inherit;text-align:left;color:var(--ink)}
+.sw.on{border-color:var(--pri);box-shadow:0 0 0 3px var(--pri2)}
+.sw .ph{aspect-ratio:1/1;font-size:1rem}
+.sw span{display:block;font-size:.72rem;line-height:1.2;padding:.3rem .35rem;min-height:2.7em;overflow:hidden}
+.sw i{display:block;font-style:normal;font-weight:800;color:var(--pri);padding:0 .35rem .35rem;font-size:.8rem}
+.lnk{background:none;border:0;color:var(--pri);text-decoration:underline;font:inherit;cursor:pointer;padding:.4rem 0}
+details summary{cursor:pointer;font-weight:700;color:var(--pri);margin:.5rem 0}
+.big2{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;background:var(--pri2);border-radius:12px;padding:.9rem 1rem;margin:.6rem 0 .2rem}
+.big2 b{font-size:1.8rem;color:var(--pri)}
+.pm2{color:var(--mut);font-size:.92rem;margin:.3rem 0 .4rem}
+.pm2 b{color:var(--ink)}
+.agree{font-weight:700;margin-top:.8rem}
 </style>
 </head>
 <body>
 <header>
-  <img src="logo-marca.png" alt="PVCENTRO" onerror="this.style.display='none'">
+  <img src="logo.jpg" alt="PVCENTRO" onerror="this.style.display='none'">
   <div class="t"><b>PVCENTRO</b><small>Catálogo · San Gil y Socorro, Santander</small></div>
   <a class="wa" id="waTop" target="_blank" rel="noopener">WhatsApp</a>
 </header>
@@ -77,6 +134,7 @@ footer a{color:var(--pri)}
   <div class="chips" id="chips"></div>
 </div>
 <main>
+  <button class="cban" id="cbanner" type="button"><span class="ic">🧮</span><span><b>Calculadora de materiales</b><small>Escribe tus m², elige PVC, drywall o teja de barro y ve el precio aproximado</small></span><span class="go">Calcular</span></button>
   <div class="info" id="info"></div>
   <div id="grid"></div>
 </main>
@@ -86,6 +144,11 @@ footer a{color:var(--pri)}
 </footer>
 <a class="wa fab" id="waFab" target="_blank" rel="noopener">Pedir por WhatsApp</a>
 <div id="m" onclick="if(event.target===this)closeP()"><div class="sheet" id="sheet" role="dialog" aria-modal="true"></div></div>
+<div id="calc" role="dialog" aria-modal="true" aria-label="Calculadora de materiales"><div class="ci">
+  <div class="chd"><b>🧮 Calculadora de materiales</b><button class="x" type="button" id="cclose" aria-label="Cerrar">✕</button></div>
+  <div id="cform"></div>
+  <div id="cres"></div>
+</div></div>
 <div id="toast"></div>
 <script>
 const WA='573107700583';
@@ -146,6 +209,206 @@ if(sp.get('c')){const c=cats.find(x=>slug(x)===sp.get('c'));if(c)cat=c}
 if(sp.get('q'))$('#q').value=sp.get('q');
 chips();draw();
 if(sp.get('p'))openP(sp.get('p'),false);
+/* ===================== CALCULADORA DE MATERIALES =====================
+   Flujo: 1) metros cuadrados  2) qué se va a instalar  3) opciones (color en PVC)  4) precio aproximado + enviar al WhatsApp.
+   Rendimientos: guías de Durlock, Eternit, Arauco/Homecenter; el PVC está calibrado con ventas reales de las tiendas (oct 2026).
+   Si cambian las medidas de tus productos, edita SOLO los números de CFG.
+   Precios: salen del catálogo (por referencia). Lo que no está en el catálogo (machimbre, teja de barro...) se llena en EXT: 0 = "por cotizar".
+   CALC_WA = WhatsApp al que llega la cotización (por defecto el mismo del catálogo). */
+const CALC_WA=WA;
+const CFG={
+ pvc:{ancho:0.30,largo:5.95,perLen:3.0,r:{omega:0.9,vig:0.85,cuelga:1.2,tLam:20,tEst:23}}, /* r = piezas por lámina */
+ dw:{placaM2:1.22*2.44,sepOmega:0.60,sepMaestra:1.20,sepCuelga:1.00,perfLen:3.0,perLen:3.0,tornM2:14,cintaM2:1.4,masillaM2:1.0},
+ te:{machAncho:0.085,machLargo:3.2,tejasM2:10.4,sepListon:0.32,listonLen:3.0,caballeteMl:3,amarreFrac:0.25,pendMin:29,manto:1.10}
+};
+const EXT={machimbre:0,liston:0,teja:0,caballete:0,amarre:0,manto:0}; /* precios COP por unidad, ej: machimbre:13900 */
+const SK={omega:'262089',angCuelga:'262409',vigueta:'262090',tLam:'262092',tEst:'262091',
+ omegaDW:'3532439',maestraDW:'3532436',angDW:'3532432',tDW:'1074581',cinta:'1074664',masilla:'3656259'};
+const TERMS=[['331433','Cornisa decorativa T-01 blanca'],['249272','Perimetral en F blanco'],['249271','Perimetral en J blanco'],['261856','Perimetral en L']];
+const PLATES=[['3497467','Placa de drywall estándar 1,22 × 2,44 m'],['1074586','Eterboard 6 mm (fibrocemento)']];
+const cs={tab:'',mode:'m2',m2:'',sp:[{l:'',w:''}],lam:'617402',term:'331433',cuelga:true,waste:'10',plate:'3497467',manto:true,rf:{l:'',w:'',p:'35',ag:'2'},q:''};
+const TIPOS=[['pvc','🏠','Cielo raso en PVC','Láminas PVC, a elegir color'],['dw','🧱','Cielo raso en drywall','Placa de yeso, estructura y acabado'],['te','🏡','Techo en machimbre con teja de barro','Cubierta inclinada']];
+const num=v=>{const n=parseFloat(String(v).replace(',','.'));return isFinite(n)&&n>0?n:0};
+const ce=x=>Math.ceil(x-1e-9);
+const PXY=sku=>{const p=P.find(x=>x.sku===sku);return p?p.price:0};
+const NM=sku=>{const p=P.find(x=>x.sku===sku);return p?p.name:sku};
+const fm=(n,d)=>Number(n).toLocaleString('es-CO',{maximumFractionDigits:d==null?1:d});
+let lastTxt='',lastWa='';
+
+function ln(name,qty,unit,price,note){return{name:name,qty:qty,unit:unit,price:price||0,note:note||''}}
+function spaces(){
+ if(cs.mode==='m2'){const A=num(cs.m2);return A>0?[{l:Math.sqrt(A*4/3),w:Math.sqrt(A*3/4)}]:[]} /* habitación típica 4:3 */
+ return cs.sp.map(s=>({l:num(s.l),w:num(s.w)})).filter(s=>s.l>0&&s.w>0)}
+function wst(){return 1+(num(cs.waste)||0)/100}
+
+function calcPVC(){
+ const S=spaces();if(!S.length)return null;const c=CFG.pvc,w=wst();
+ let A=0,per=0,stripLen=0;
+ S.forEach(s=>{const L=Math.max(s.l,s.w),Sh=Math.min(s.l,s.w);A+=s.l*s.w;per+=2*(s.l+s.w);stripLen+=ce(Sh/c.ancho)*L});
+ const r=c.r,nLam=ce(stripLen*w/c.largo),nPer=ce(per*w/c.perLen),nOm=ce(nLam*r.omega),nVig=ce(nLam*r.vig),nCu=cs.cuelga?ce(nLam*r.cuelga):0;
+ const L=[
+  ln(NM(cs.lam),nLam,'láminas',PXY(cs.lam),'cada lámina cubre ≈ '+fm(c.ancho*c.largo,2)+' m²'),
+  ln(NM(cs.term),nPer,'piezas de 3 m',PXY(cs.term),'borde de todo el cielo raso'),
+  ln(NM(SK.omega),nOm,'piezas de 3 m',PXY(SK.omega),'estructura'),
+  ln(NM(SK.vigueta),nVig,'piezas de 3 m',PXY(SK.vigueta),'estructura')
+ ];
+ if(nCu)L.push(ln(NM(SK.angCuelga),nCu,'unidades',PXY(SK.angCuelga),'cuelgas de la estructura'));
+ L.push(ln(NM(SK.tLam),ce(nLam*r.tLam),'unidades',PXY(SK.tLam),'fijan la lámina'));
+ L.push(ln(NM(SK.tEst),ce(nLam*r.tEst),'unidades',PXY(SK.tEst),'fijan la estructura'));
+ return{title:'Cielo raso en PVC',area:A,pick:'Color: '+NM(cs.lam)+' (Ref. '+cs.lam+')',info:fm(A,1)+' m²'+(cs.mode==='dim'?' · '+fm(per,1)+' m de perímetro':''),lines:L,warn:[],
+  note:'Láminas calculadas por medidas (lámina de '+fm(c.ancho*100,0)+' cm × '+fm(c.largo,2)+' m); estructura y tornillos según lo que se instala normalmente en nuestras obras. Incluye '+fm((w-1)*100,0)+' % de desperdicio.'};
+}
+
+function calcDW(){
+ const S=spaces();if(!S.length)return null;const c=CFG.dw,w=wst();
+ let A=0,per=0,nMainLen=0,nSecLen=0,cuel=0,cross=0;
+ S.forEach(s=>{const L=Math.max(s.l,s.w),Sh=Math.min(s.l,s.w);A+=s.l*s.w;per+=2*(s.l+s.w);
+  const nm=Math.floor(Sh/c.sepMaestra)+1,ns=ce(L/c.sepOmega);
+  nMainLen+=nm*L;nSecLen+=ns*Sh;cuel+=nm*(Math.floor(L/c.sepCuelga)+1);cross+=nm*ns});
+ const nPl=ce(A/c.placaM2*w),nMa=ce(nMainLen*w/c.perfLen),nOm=ce(nSecLen*w/c.perfLen),nAn=ce(per*w/c.perLen);
+ const L=[
+  ln(NM(cs.plate),nPl,'placas',PXY(cs.plate),'cada placa cubre '+fm(c.placaM2,2)+' m²'),
+  ln(NM(SK.maestraDW),nMa,'piezas de 3 m',PXY(SK.maestraDW),'vigas maestras cada 1,20 m'),
+  ln(NM(SK.omegaDW),nOm,'piezas de 3 m',PXY(SK.omegaDW),'omegas cada 60 cm'),
+  ln(NM(SK.angDW),nAn,'piezas de 3 m',PXY(SK.angDW),'ángulo perimetral'),
+  ln(NM(SK.angCuelga),cuel,'unidades',PXY(SK.angCuelga),'cuelgas cada 1,00 m'),
+  ln(NM(SK.tDW),ce(A*c.tornM2),'unidades',PXY(SK.tDW),'fijan la placa (≈'+c.tornM2+' por m²)'),
+  ln(NM(SK.tEst),ce((cross*2+cuel*2)*1.15),'unidades',PXY(SK.tEst),'fijan la estructura'),
+  ln(NM(SK.cinta),ce(A*c.cintaM2),'metros',PXY(SK.cinta),'para juntas'),
+  ln(NM(SK.masilla),ce(A*c.masillaM2),'kg',PXY(SK.masilla),'juntas y tornillos')
+ ];
+ return{title:'Cielo raso en drywall',area:A,pick:'Placa: '+NM(cs.plate),info:fm(A,1)+' m²'+(cs.mode==='dim'?' · '+fm(per,1)+' m de perímetro':''),lines:L,warn:[],
+  note:'Rendimiento de referencia (Durlock): omegas cada 60 cm, vigas maestras cada 1,20 m, cuelgas cada 1,00 m, tornillos cada 25 cm en el centro y 15 cm en los bordes. Incluye '+fm((w-1)*100,0)+' % de desperdicio. No incluye pintura ni mano de obra.'};
+}
+
+function calcTeja(){
+ let l,wd;
+ if(cs.mode==='m2'){const A=num(cs.m2);if(!A)return null;l=Math.sqrt(A*1.6);wd=Math.sqrt(A/1.6)}
+ else{l=num(cs.rf.l);wd=num(cs.rf.w)}
+ if(!l||!wd)return null;const c=CFG.te,w=wst();
+ const p=Math.max(0,parseFloat(String(cs.rf.p).replace(',','.'))||0),f=Math.sqrt(1+Math.pow(p/100,2)),plan=l*wd,real=plan*f,ag2=cs.rf.ag==='2';
+ const nM=ce(real/(c.machAncho*c.machLargo)*w),nLi=ce(real/c.sepListon*w/c.listonLen),nTe=ce(real*c.tejasM2*w),nCab=ag2?ce(l*c.caballeteMl):0,nAm=ce(real*c.tejasM2*c.amarreFrac);
+ const L=[
+  ln('Machimbre de pino 9 cm × 3,20 m',nM,'piezas',EXT.machimbre,'forma el cielo visto y el tablero de la cubierta'),
+  ln('Listón de madera 2×2 (latas)',nLi,'piezas de 3 m',EXT.liston,'cada 32 cm, sobre el machimbre'),
+  ln('Teja de barro colonial (≈ 10,4 por m²)',nTe,'tejas',EXT.teja,'42 × 33,4 cm')
+ ];
+ if(nCab)L.push(ln('Caballete (cumbrera) de barro',nCab,'piezas',EXT.caballete,'≈ '+c.caballeteMl+' por metro de cumbrera'));
+ L.push(ln('Amarres / ganchos de fijación',nAm,'unidades',EXT.amarre,'1 de cada 5 tejas y todas las del borde'));
+ if(cs.manto)L.push(ln('Manto o membrana impermeabilizante',ce(real*c.manto),'m²',EXT.manto,'bajo la teja, recomendado'));
+ const warn=[];
+ if(p<c.pendMin)warn.push('Con pendiente menor al '+c.pendMin+' % (16°) la teja de barro puede filtrar agua. Con lluvias fuertes se recomienda 40 % (21°) o más.');
+ else if(p<40)warn.push('Pendiente mínima válida para lluvias moderadas. Para lluvias fuertes se recomienda 40 % (21°) o más.');
+ if(p>100)warn.push('Revisa la pendiente: 100 % equivale a 45°.');
+ return{title:'Techo en machimbre y teja de barro',area:plan,pick:'Pendiente '+fm(p,0)+' % · '+(ag2?'dos aguas':'una agua'),info:fm(plan,1)+' m² vistos desde arriba · cubierta real '+fm(real,1)+' m² (pendiente '+fm(p,0)+' %)',lines:L,warn:warn,
+  note:'Rendimiento de referencia: teja de arcilla de 42 × 33,4 cm ≈ 10,4 por m², listones cada 32 cm, pendiente mínima 29 % (Homecenter/Arauco). La estructura portante (cerchas, vigas y correas) NO está incluida: debe calcularla un profesional. Incluye '+fm((w-1)*100,0)+' % de desperdicio.'};
+}
+
+function calcAny(){return cs.tab==='pvc'?calcPVC():cs.tab==='dw'?calcDW():cs.tab==='te'?calcTeja():null}
+function hasArea(){return cs.mode==='m2'?num(cs.m2)>0:(cs.tab==='te'?num(cs.rf.l)>0&&num(cs.rf.w)>0:spaces().length>0)}
+
+function resHTML(r){
+ lastTxt='';lastWa='';
+ if(!r){return '<div class="cc"><p>'+(!hasArea()?'Escribe los metros cuadrados para empezar.':'Elige qué vas a instalar y te mostramos el precio aproximado.')+'</p></div>'}
+ let tot=0,pend=0;
+ r.lines.forEach(x=>{if(x.price>0)tot+=x.qty*x.price;else pend++});
+ const allPend=tot===0,pm2=r.area>0?tot/r.area:0;
+ let h='<div class="cc res"><h3>'+esc(r.title)+'</h3><p>'+esc(r.info)+(r.pick?'<br>'+esc(r.pick):'')+'</p>';
+ r.warn.forEach(t=>h+='<div class="warn">⚠️ '+esc(t)+'</div>');
+ h+='<div class="big2"><span>'+(allPend?'Precio':pend?'Precio aprox. (parcial)':'Precio aproximado')+'</span><b>'+(allPend?'Te cotizamos':COP(tot))+'</b></div>';
+ if(!allPend)h+='<div class="pm2">≈ <b>'+COP(pm2)+'</b> por m² en materiales'+(pend?' (sin '+pend+' ítem'+(pend>1?'s':'')+' por cotizar)':'')+'</div>';
+ h+='<details><summary>Ver lista de materiales</summary>';
+ r.lines.forEach(x=>{
+  h+='<div class="rl"><div class="a"><b>'+esc(x.name)+'</b><span>'+fm(x.qty,0)+' '+esc(x.unit)+(x.price>0?' × '+COP(x.price):'')+(x.note?' · '+esc(x.note):'')+'</span></div><div class="s">'+(x.price>0?COP(x.qty*x.price):'Por cotizar')+'</div></div>';
+ });
+ h+='</details>';
+ h+='<div class="note">Valor aproximado con precios del catálogo (IVA incluido). No incluye mano de obra, transporte ni estructura portante. Un asesor confirma disponibilidad y el precio final. '+esc(r.note)+'</div>';
+ h+='<div class="agree">¿Te sirve este valor? Envíanos tu cotización y te atendemos por WhatsApp.</div>';
+ h+='<div class="cact"><a class="wa" id="cwa" target="_blank" rel="noopener">✅ Me interesa · enviar al WhatsApp</a><button class="btn2" type="button" id="ccopy">Copiar lista</button></div></div>';
+ let t=r.title+' · '+r.info+'\n'+(r.pick?r.pick+'\n':'');
+ r.lines.forEach(x=>{t+='• '+x.name+': '+fm(x.qty,0)+' '+x.unit+(x.price>0?' ('+COP(x.qty*x.price)+')':' (por cotizar)')+'\n'});
+ t+=allPend?'Precio: por cotizar':((pend?'Total parcial aprox.: ':'Total aprox.: ')+COP(tot)+' (≈ '+COP(pm2)+' por m²)');
+ lastTxt=t;lastWa='https://wa.me/'+CALC_WA+'?text='+encodeURIComponent('Hola PVCENTRO, usé la calculadora del catálogo y me interesa esta cotización:\n'+t+'\n(sin mano de obra)\n'+BASE+'catalogo.html?calc='+cs.tab);
+ return h;
+}
+function res(){
+ $('#cres').innerHTML=resHTML(calcAny());
+ const a=$('#cwa');if(a)a.href=lastWa;
+}
+
+/* ---------- formulario ---------- */
+function s1HTML(){
+ let h='<div class="cc" id="c1"><h3>1. ¿Cuántos metros cuadrados?</h3>';
+ if(cs.mode==='m2'){
+  h+='<input class="bigin" inputmode="decimal" placeholder="ej: 25" data-k="m2" value="'+esc(cs.m2)+'" aria-label="Metros cuadrados"><p>Es el área del piso del espacio (largo × ancho).'+(cs.tab==='te'?' Para techo, los m² vistos desde arriba, con aleros.':'')+'</p>';
+  h+='<button class="lnk" type="button" data-mode="dim">Prefiero poner largo × ancho</button>';
+ }else{
+  if(cs.tab==='te'){
+   h+='<div class="fr"><div><label>Largo (m)</label><input inputmode="decimal" placeholder="ej: 8" data-k="rf.l" value="'+esc(cs.rf.l)+'"></div><div><label>Ancho total (m)</label><input inputmode="decimal" placeholder="ej: 5" data-k="rf.w" value="'+esc(cs.rf.w)+'"></div><span></span></div>';
+  }else h+=spHTML();
+  h+='<button class="lnk" type="button" data-mode="m2">Prefiero poner solo los m²</button>';
+ }
+ return h+'</div>';
+}
+function spHTML(){
+ return cs.sp.map((s,i)=>'<div class="fr"><div><label>Largo (m)</label><input inputmode="decimal" placeholder="ej: 4,5" data-sp="'+i+'" data-f="l" value="'+esc(s.l)+'"></div><div><label>Ancho (m)</label><input inputmode="decimal" placeholder="ej: 3" data-sp="'+i+'" data-f="w" value="'+esc(s.w)+'"></div>'+(cs.sp.length>1?'<button class="rm" type="button" data-del="'+i+'" aria-label="Quitar espacio">✕</button>':'<span></span>')+'</div>').join('')+'<button class="add" type="button" data-add="1">+ Agregar otro espacio</button>';
+}
+function s2HTML(){
+ return '<div class="cc" id="c2"><h3>2. ¿Qué vas a instalar?</h3><div class="tls">'+TIPOS.map(t=>'<button type="button" class="tl'+(cs.tab===t[0]?' on':'')+'" data-t="'+t[0]+'"><span class="ic2">'+t[1]+'</span><span><b>'+esc(t[2])+'</b><small>'+esc(t[3])+'</small></span></button>').join('')+'</div></div>';
+}
+function lamList(){
+ const q=norm(cs.q).trim().split(/\s+/).filter(Boolean);
+ return P.filter(p=>p.cat==='Lámina PVC cielo raso'&&p.price>0&&!/puntilla|caja/i.test(p.name)&&q.every(w=>norm(p.name).includes(w))).sort((a,b)=>a.name.localeCompare(b.name,'es'));
+}
+function swHTML(){
+ const L=lamList();
+ return L.length?L.map(p=>'<button type="button" class="sw'+(p.sku===cs.lam?' on':'')+'" data-lam="'+p.sku+'"><div class="ph">'+img(p)+'</div><span>'+esc(p.name.replace(/^L[áa]mina\s+/i,''))+'</span><i>'+COP(p.price)+'</i></button>').join(''):'<div class="empty">No hay láminas con ese nombre.</div>';
+}
+function opts(arr,val,pr){return arr.map(a=>'<option value="'+a[0]+'"'+(a[0]===val?' selected':'')+'>'+esc(a[1])+(pr?' · '+(PXY(a[0])>0?COP(PXY(a[0])):'consultar'):'')+'</option>').join('')}
+function wasteSel(){return '<div class="cf"><label>Desperdicio por cortes</label><select data-k="waste">'+['5','10','15'].map(v=>'<option value="'+v+'"'+(cs.waste===v?' selected':'')+'>'+v+' %'+(v==='10'?' (recomendado)':'')+'</option>').join('')+'</select></div>'}
+function s3HTML(){
+ if(cs.tab==='pvc'){
+  return '<div class="cc" id="c3"><h3>3. Elige el color de la lámina</h3><input type="search" id="swq" placeholder="Buscar color o diseño (ej: blanco, madera, humo)" value="'+esc(cs.q)+'" autocomplete="off"><div class="swg" id="swg" style="margin-top:.6rem">'+swHTML()+'</div><p>Toca una lámina para elegirla. El precio es por lámina de 30 cm × 5,95 m.</p>'+
+  '<details><summary>Más opciones (borde, cuelgas, desperdicio)</summary><div class="cf"><label>Terminación del borde</label><select data-k="term">'+opts(TERMS,cs.term,1)+'</select></div><label class="chk"><input type="checkbox" data-k="cuelga"'+(cs.cuelga?' checked':'')+'><span>Techo colgado (lleva cuelgas desde la losa o la cubierta)</span></label>'+wasteSel()+'</details></div>';
+ }
+ if(cs.tab==='dw')return '<div class="cc" id="c3"><h3>3. Opciones</h3><div class="cf"><label>Tipo de placa</label><select data-k="plate">'+opts(PLATES,cs.plate,1)+'</select></div>'+wasteSel()+'</div>';
+ if(cs.tab==='te')return '<div class="cc" id="c3"><h3>3. Opciones del techo</h3><div class="cf two"><div><label>Caídas de agua</label><select data-k="rf.ag"><option value="2"'+(cs.rf.ag==='2'?' selected':'')+'>Dos aguas</option><option value="1"'+(cs.rf.ag==='1'?' selected':'')+'>Una agua</option></select></div><div><label>Pendiente (%)</label><input inputmode="decimal" data-k="rf.p" value="'+esc(cs.rf.p)+'"></div></div><p>Pendiente de 35 % = sube 35 cm por cada metro.</p><label class="chk"><input type="checkbox" data-k="manto"'+(cs.manto?' checked':'')+'><span>Incluir manto impermeabilizante bajo la teja</span></label>'+wasteSel()+'</div>';
+ return '';
+}
+function calcDraw(){$('#cform').innerHTML=s1HTML()+s2HTML()+s3HTML();res()}
+function calcOpen(t,m2){
+ if(t&&TIPOS.some(x=>x[0]===t))cs.tab=t;
+ if(m2&&num(m2)>0){cs.m2=String(m2);cs.mode='m2'}
+ calcDraw();$('#calc').classList.add('open');$('#calc').scrollTop=0;document.body.style.overflow='hidden';
+ if(!cs.m2&&cs.mode==='m2'){setTimeout(()=>{const i=$('#cform input[data-k="m2"]');if(i&&window.innerWidth>700)i.focus()},50)}
+}
+function calcClose(){$('#calc').classList.remove('open');document.body.style.overflow='';try{const u=new URL(location.href);['calc','m2'].forEach(k=>u.searchParams.delete(k));history.replaceState(null,'',u)}catch(e){}}
+function onForm(e){
+ const t=e.target;
+ if(t.id==='swq'){cs.q=t.value;$('#swg').innerHTML=swHTML();return}
+ if(t.dataset.sp!==undefined){cs.sp[+t.dataset.sp][t.dataset.f]=t.value}
+ else if(t.dataset.k){const k=t.dataset.k,v=t.type==='checkbox'?t.checked:t.value;if(k.indexOf('rf.')===0)cs.rf[k.slice(3)]=v;else cs[k]=v}
+ else return;
+ res();
+}
+$('#cform').addEventListener('input',onForm);
+$('#cform').addEventListener('change',onForm);
+$('#cform').addEventListener('click',e=>{
+ const b=e.target.closest('button');if(!b)return;
+ if(b.dataset.add){cs.sp.push({l:'',w:''});calcDraw()}
+ else if(b.dataset.del!==undefined){cs.sp.splice(+b.dataset.del,1);calcDraw()}
+ else if(b.dataset.mode){cs.mode=b.dataset.mode;calcDraw()}
+ else if(b.dataset.t){cs.tab=b.dataset.t;calcDraw();const c=$('#c3');if(c)c.scrollIntoView({behavior:'smooth',block:'start'})}
+ else if(b.dataset.lam){cs.lam=b.dataset.lam;document.querySelectorAll('#swg .sw').forEach(x=>x.classList.toggle('on',x.dataset.lam===cs.lam));res()}
+});
+$('#cres').addEventListener('click',async e=>{
+ if(e.target.id==='ccopy'){try{await navigator.clipboard.writeText(lastTxt);toast('Lista copiada')}catch(x){prompt('Copia esta lista:',lastTxt)}}
+});
+$('#cclose').addEventListener('click',calcClose);
+$('#cbanner').addEventListener('click',()=>calcOpen());
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#calc').classList.contains('open'))calcClose()});
+if(sp.get('calc'))calcOpen(sp.get('calc'),sp.get('m2'));
+
 </script>
 </body>
 </html>
