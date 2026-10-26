@@ -262,7 +262,7 @@ function calcPVC(){
  L.push(ln(NM(SK.tLam),ce(nLam*r.tLam),'unidades',PXY(SK.tLam),'fijan la lámina'));
  L.push(ln(NM(SK.tEst),ce(nLam*r.tEst),'unidades',PXY(SK.tEst),'fijan la estructura'));
  return{title:'Cielo raso en PVC',area:A,pick:'Color: '+NM(cs.lam)+' (Ref. '+cs.lam+')',info:fm(A,1)+' m²'+(cs.mode==='dim'?' · '+fm(per,1)+' m de perímetro':''),lines:L,warn:[],
-  note:'Láminas calculadas por medidas (lámina de '+fm(c.ancho*100,0)+' cm × '+fm(c.largo,2)+' m); estructura y tornillos según lo que se instala normalmente en nuestras obras. Incluye '+fm((w-1)*100,0)+' % de desperdicio. Precio de lista: en tienda, según el volumen, el valor puede ajustarse. No incluye silicona, puntillas ni uniones.'};
+  note:'Láminas calculadas por medidas (lámina de '+fm(c.ancho*100,0)+' cm × '+fm(c.largo,2)+' m); estructura y tornillos según lo que se instala normalmente en nuestras obras. Incluye '+fm((w-1)*100,0)+' % de desperdicio. Si hay dos valores, el mayor es el precio de lista y el menor es el aproximado con el descuento habitual por volumen en tienda. No incluye silicona, puntillas ni uniones.'};
 }
 
 function calcDW(){
@@ -318,11 +318,12 @@ function resHTML(r){
  let tot=0,pend=0;
  r.lines.forEach(x=>{if(x.price>0)tot+=x.qty*x.price;else pend++});
  const allPend=tot===0,pm2=r.area>0?tot/r.area:0;
- lastBar={tot:tot,allPend:allPend,pm2:pm2,pend:pend};
+ const rng=(cs.tab==='pvc'&&!allPend&&!pend&&r.area>0)?{lo:Math.round(tot*0.85/1000)*1000}:null;
+ lastBar={tot:tot,allPend:allPend,pm2:pm2,pend:pend,rng:rng,lo2:rng?rng.lo/r.area:0};
  let h='<div class="cc res"><h3>'+esc(r.title)+'</h3><p>'+esc(r.info)+(r.pick?'<br>'+esc(r.pick):'')+'</p>';
  r.warn.forEach(t=>h+='<div class="warn">⚠️ '+esc(t)+'</div>');
- h+='<div class="big2"><span>'+(allPend?'Precio':pend?'Precio aprox. (parcial)':'Precio aproximado')+'</span><b>'+(allPend?'Te cotizamos':COP(tot))+'</b></div>';
- if(!allPend)h+='<div class="pm2">≈ <b>'+COP(pm2)+'</b> por m² en materiales'+(pend?' (sin '+pend+' ítem'+(pend>1?'s':'')+' por cotizar)':'')+'</div>';
+ h+='<div class="big2"><span>'+(allPend?'Precio':pend?'Precio aprox. (parcial)':'Precio aproximado')+'</span><b>'+(allPend?'Te cotizamos':rng?COP(rng.lo)+' – '+COP(tot):COP(tot))+'</b></div>';
+ if(!allPend)h+='<div class="pm2">≈ <b>'+(rng?COP(lastBar.lo2)+' a '+COP(pm2):COP(pm2))+'</b> por m² en materiales'+(pend?' (sin '+pend+' ítem'+(pend>1?'s':'')+' por cotizar)':'')+'</div>';
  h+='<details><summary>Ver lista de materiales</summary>';
  r.lines.forEach(x=>{
   h+='<div class="rl"><div class="a"><b>'+esc(x.name)+'</b><span>'+fm(x.qty,0)+' '+esc(x.unit)+(x.price>0?' × '+COP(x.price):'')+(x.note?' · '+esc(x.note):'')+'</span></div><div class="s">'+(x.price>0?COP(x.qty*x.price):'Por cotizar')+'</div></div>';
@@ -333,7 +334,7 @@ function resHTML(r){
  h+='<div class="cact"><a class="wa" id="cwa" target="_blank" rel="noopener">✅ Me interesa · enviar al WhatsApp</a><button class="btn2" type="button" id="ccopy">Copiar lista</button></div></div>';
  let t=r.title+' · '+r.info+'\n'+(r.pick?r.pick+'\n':'');
  r.lines.forEach(x=>{t+='• '+x.name+': '+fm(x.qty,0)+' '+x.unit+(x.price>0?' ('+COP(x.qty*x.price)+')':' (por cotizar)')+'\n'});
- t+=allPend?'Precio: por cotizar':((pend?'Total parcial aprox.: ':'Total aprox.: ')+COP(tot)+' (≈ '+COP(pm2)+' por m²)');
+ t+=allPend?'Precio: por cotizar':((pend?'Total parcial aprox.: ':'Total aprox.: ')+(rng?COP(rng.lo)+' a '+COP(tot)+' (≈ '+COP(lastBar.lo2)+' a '+COP(pm2)+' por m²)':COP(tot)+' (≈ '+COP(pm2)+' por m²)'));
  lastTxt=t;lastWa='https://wa.me/'+CALC_WA+'?text='+encodeURIComponent('Hola PVCENTRO, usé la calculadora del catálogo y me interesa esta cotización:\n'+t+'\n(sin mano de obra)\n'+BASE+'catalogo.html?calc='+cs.tab);
  return h;
 }
@@ -341,7 +342,7 @@ function res(){
  $('#cres').innerHTML=resHTML(calcAny());
  const a=$('#cwa');if(a)a.href=lastWa;
  const bar=$('#cbar');
- if(lastBar){bar.innerHTML='<div><small>'+(lastBar.allPend?'Precio':lastBar.pend?'Precio aprox. (parcial)':'Precio aproximado')+'</small><b>'+(lastBar.allPend?'Te cotizamos':COP(lastBar.tot))+'</b>'+(lastBar.allPend?'':'<small>≈ '+COP(lastBar.pm2)+' por m²</small>')+'</div><a class="wa" target="_blank" rel="noopener" href="'+esc(lastWa)+'">Enviar al WhatsApp</a>';bar.classList.add('on')}
+ if(lastBar){bar.innerHTML='<div><small>'+(lastBar.allPend?'Precio':lastBar.pend?'Precio aprox. (parcial)':'Precio aproximado')+'</small><b>'+(lastBar.allPend?'Te cotizamos':lastBar.rng?COP(lastBar.rng.lo)+' – '+COP(lastBar.tot):COP(lastBar.tot))+'</b>'+(lastBar.allPend?'':'<small>≈ '+(lastBar.rng?COP(lastBar.lo2)+' a '+COP(lastBar.pm2):COP(lastBar.pm2))+' por m²</small>')+'</div><a class="wa" target="_blank" rel="noopener" href="'+esc(lastWa)+'">Enviar al WhatsApp</a>';bar.classList.add('on')}
  else{bar.innerHTML='';bar.classList.remove('on')}
 }
 
