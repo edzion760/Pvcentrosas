@@ -6,7 +6,7 @@
  "productos": [
   {
    "sku": "262409",
-   "nombre": "Angulo de Cuelga",
+   "nombre": "Ángulo Cpvc",
    "categoria": "Estructura y accesorios",
    "unidad": "Unidad",
    "precio": 2700,
@@ -15,7 +15,7 @@
   },
   {
    "sku": "262089",
-   "nombre": "Omega con Reborde",
+   "nombre": "Omega Cpvc",
    "categoria": "Cornisas y perfilería",
    "unidad": "Unidad",
    "precio": 3700,
@@ -24,7 +24,7 @@
   },
   {
    "sku": "262090",
-   "nombre": "Vigueta",
+   "nombre": "Vigueta Cpvc",
    "categoria": "Estructura y accesorios",
    "unidad": "Unidad",
    "precio": 3700,
@@ -186,7 +186,7 @@
   },
   {
    "sku": "3532432",
-   "nombre": "Ángulo drywall 2x2",
+   "nombre": "Ángulo drywall",
    "categoria": "Estructura y accesorios",
    "unidad": "Unidad",
    "precio": 3000,
@@ -627,10 +627,10 @@
   },
   {
    "sku": "3497467",
-   "nombre": "Lamina Drywall",
+   "nombre": "Lámina drywall",
    "categoria": "Drywall y fibrocemento",
    "unidad": "Lámina",
-   "precio": 54000,
+   "precio": 52000,
    "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=3497467",
    "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/3497467.webp"
   },
@@ -1431,7 +1431,7 @@
    "nombre": "Teja colonial en PVC 2mm largo 5,90m",
    "categoria": "Teja",
    "unidad": "Unidad",
-   "precio": 195000,
+   "precio": 199000,
    "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=582990",
    "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/582990.webp"
   },
@@ -1449,7 +1449,7 @@
    "nombre": "Teja pvc 6 mts",
    "categoria": "Teja",
    "unidad": "Unidad",
-   "precio": 195000,
+   "precio": 199000,
    "link": "https://edzion760.github.io/Pvcentrosas/catalogo.html?p=261839",
    "foto": "https://edzion760.github.io/Pvcentrosas/imagenes/productos/261839.webp"
   },
@@ -1509,7 +1509,7 @@
   },
   {
    "sku": "3532436",
-   "nombre": "Viguetas Drywall",
+   "nombre": "Vigueta drywall",
    "categoria": "Estructura y accesorios",
    "unidad": "Unidad",
    "precio": 4200,
